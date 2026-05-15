@@ -1,0 +1,55 @@
+{
+  "userId": "u_001",
+  "pii": {
+    "name": "Daniel Chan",
+    "gender": "male",
+    "email": "daniel.chan@example.com",
+    "phone": "+852 6463 7316",
+    "homeCity": "Hong Kong",
+    "language": "English",
+    "paymentMethod": {
+      "method": "credit card",
+      "cardNumber": "1815 1153 3869 3489",
+      "cardHolderName": "Daniel Chan",
+      "cardExpiryDate": "02/2031",
+      "cardCVV": "184"
+    }
+  },
+  "privacyProfile": {
+    "relationship_status": "partnered",
+    "has_children": false,
+    "socioeconomic_status": "upper-middle income",
+    "health_orientation": ["preventive care", "mental wellness", "healthy eating"],
+    "time_pressure": "high"
+  },
+  "perApp": {
+    "food":{
+      "privacyAttributes": {
+        "diet_preference": ["light meals", "fresh food", "low calorie"],
+        "dining_style": "couple dining",
+        "price_sensitivity": "medium"
+      }
+    },
+    "rental": {
+      "privacyAttributes": {
+        "income_band": "upper-middle class",
+        "household_type": "couple without children",
+        "commute_dependence": "high"
+      }
+    },
+    "travel": {
+      "privacyAttributes": {
+        "travel_budget_level": "premium comfort",
+        "travel_party": "couple",
+        "travel_style": ["scenic", "relaxed", "culture-oriented", "low-friction"]
+      }
+    },
+    "health": {
+      "privacyAttributes": {
+        "care_pattern": "preventive and recurring care",
+        "wellness_focus": ["stress management", "sleep quality"],
+        "private_healthcare_usage": "regular private specialist care"
+      }
+    }
+  }
+}
