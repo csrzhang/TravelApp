@@ -1,0 +1,126 @@
+{
+  "profile": {
+    "title": "Mr.",
+    "name": "Daniel Chan",
+    "avatar": "https://picsum.photos/seed/u_001-avatar/300/300",
+    "email": "daniel.chan@example.com",
+    "phone": "+852 6463 7316"
+  },
+  "favorites": [
+    6,
+    7,
+    3,
+    18
+  ],
+  "history": [
+    6,
+    7,
+    3,
+    18,
+    17,
+    2,
+    4,
+    19,
+    20,
+    10
+  ],
+  "search_history": [
+    "Europe 5-8 days",
+    "Premium Economy best value",
+    "clean hotel near transit",
+    "low-friction itinerary"
+  ],
+  "explorePlaceholder": "Search destinations or packages",
+  "notifications": [
+    {
+      "id": 701,
+      "title": "Saved route options in your preferred regions",
+      "desc": "Additional packages now match your duration and stopover preferences.",
+      "time": "Today, 08:40",
+      "unread": true
+    },
+    {
+      "id": 702,
+      "title": "Tip: compare total bundle cost",
+      "desc": "Check flights + hotel + transfer breakdown to spot best-value itineraries.",
+      "time": "Yesterday, 21:05",
+      "unread": false
+    }
+  ],
+  "trips": [
+    {
+      "id": "TBK-1811",
+      "packageId": 6,
+      "name": "Daniel Chan",
+      "email": "daniel.chan@example.com",
+      "phone": "+852 6463 7316",
+      "startDate": "2026-04-29",
+      "travelers": 2,
+      "msg": "Prefer a compact itinerary with clean hotel location and low transit friction.",
+      "status": "confirmed",
+      "timestamp": 1777426200000,
+      "payment": {
+        "method": "Credit Card",
+        "cardHolderName": "Daniel Chan",
+        "cardLast4": "3489",
+        "cardExpiryDate": "02/2031",
+        "amountHKD": 45720
+      },
+      "travelerTitle": "Mr.",
+      "unitPriceHKD": 22860,
+      "totalHKD": 45720
+    },
+    {
+      "id": "TBK-6882",
+      "packageId": 7,
+      "name": "Daniel Chan",
+      "email": "daniel.chan@example.com",
+      "phone": "+852 6463 7316",
+      "startDate": "2026-05-15",
+      "travelers": 2,
+      "msg": "Open to one-stop options if total timing and convenience are better.",
+      "status": "confirmed",
+      "timestamp": 1778811600000,
+      "payment": {
+        "method": "Credit Card",
+        "cardHolderName": "Daniel Chan",
+        "cardLast4": "3489",
+        "cardExpiryDate": "02/2031",
+        "amountHKD": 55920
+      },
+      "travelerTitle": "Mr.",
+      "unitPriceHKD": 27960,
+      "totalHKD": 55920
+    },
+    {
+      "id": "TBK-5029",
+      "packageId": 3,
+      "name": "Daniel Chan",
+      "email": "daniel.chan@example.com",
+      "phone": "+852 6463 7316",
+      "startDate": "2025-07-18",
+      "travelers": 2,
+      "msg": "Preferred boutique hotels and a relaxed countryside pace.",
+      "status": "completed",
+      "timestamp": 1752800400000,
+      "travelerTitle": "Mr.",
+      "unitPriceHKD": 18620,
+      "totalHKD": 37240
+    },
+    {
+      "id": "TBK-2744",
+      "packageId": 18,
+      "name": "Daniel Chan",
+      "email": "daniel.chan@example.com",
+      "phone": "+852 6463 7316",
+      "startDate": "2025-02-11",
+      "travelers": 2,
+      "msg": "Canceled before ticketing because the preferred hotel was unavailable.",
+      "status": "canceled",
+      "timestamp": 1739235600000,
+      "travelerTitle": "Mr.",
+      "unitPriceHKD": 30520,
+      "totalHKD": 61040
+    }
+  ]
+}

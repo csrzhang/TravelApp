@@ -1,0 +1,1833 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <title>TravelApp</title>
+
+    <link rel="manifest" href="manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="TravelApp" />
+    <link rel="apple-touch-icon" href="icons/icon-180x180.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0284c7" /* sky-600 */,
+              primaryDark: "#0369a1" /* sky-700 */,
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      * {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .fade-in {
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      @media (min-width: 640px) {
+        #app-frame {
+          height: min(900px, calc(100vh - 24px)) !important;
+          width: min(430px, calc(100vw - 32px), calc((100vh - 24px) * 0.48)) !important;
+          max-width: 430px;
+          min-width: 320px;
+        }
+      }
+
+      @media (max-width: 380px) {
+        #app-frame {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-white sm:bg-gray-200 flex justify-center items-center h-[100dvh] w-screen overflow-hidden overscroll-none"
+  >
+    <div
+      id="app-frame"
+      class="w-full h-full bg-gray-50 flex flex-col relative sm:shadow-2xl sm:rounded-[2.5rem] sm:border-[8px] sm:border-gray-800 overflow-hidden"
+    >
+      <header
+        id="app-header"
+        class="shrink-0 bg-white px-5 pt-[max(1rem,env(safe-area-inset-top))] pb-4 flex justify-between items-center shadow-sm z-40 relative"
+      >
+        <div class="flex items-center gap-2 text-primary">
+          <i class="ph-fill ph-airplane-takeoff text-2xl"></i>
+          <span class="font-bold text-lg text-gray-800">TravelApp</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            id="quick-saved-btn"
+            onclick="location.hash = '#/saved'"
+            class="relative w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 active:scale-95 transition-transform"
+            title="Saved"
+          >
+            <i class="ph ph-heart text-lg"></i>
+            <span
+              id="saved-badge"
+              class="absolute -top-1 -right-1 bg-sky-600 text-white text-[10px] font-bold rounded-full h-4 min-w-4 px-1 flex items-center justify-center border border-white"
+              style="display: none"
+              >0</span
+            >
+          </button>
+
+          <button
+            onclick="toggleNotifications()"
+            class="relative w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 active:scale-95 transition-transform"
+            title="Notifications"
+          >
+            <i class="ph ph-bell text-lg"></i>
+            <span
+              id="notification-badge"
+              class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center border border-white"
+              style="display: none"
+              >0</span
+            >
+          </button>
+        </div>
+
+        <div
+          id="notifications-panel"
+          class="absolute top-[calc(60px+env(safe-area-inset-top))] right-5 w-72 bg-white rounded-2xl shadow-2xl border border-gray-100 z-50 hidden flex-col overflow-hidden transform origin-top-right transition-all"
+        >
+          <div
+            class="p-4 border-b border-gray-50 flex justify-between items-center bg-gray-50/50"
+          >
+            <span class="font-bold text-gray-800 text-sm">Notifications</span>
+            <button
+              onclick="markAllRead()"
+              class="text-xs text-primary font-medium hover:underline"
+            >
+              Mark all read
+            </button>
+          </div>
+          <div
+            class="flex flex-col max-h-80 overflow-y-auto"
+            id="notification-list"
+          ></div>
+        </div>
+      </header>
+
+      <main
+        id="main-content"
+        class="flex-1 overflow-y-auto overflow-x-hidden bg-gray-50 fade-in relative z-0"
+      ></main>
+
+      <nav
+        id="app-nav"
+        class="shrink-0 w-full bg-white border-t border-gray-200 px-6 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex justify-between items-center z-40"
+      >
+        <a
+          href="#/home"
+          class="nav-item flex flex-col items-center gap-1 text-primary w-16"
+          data-tab="home"
+        >
+          <i class="ph-fill ph-house text-2xl"></i>
+          <span class="text-[10px] font-medium">Home</span>
+        </a>
+        <a
+          href="#/explore"
+          class="nav-item flex flex-col items-center gap-1 text-gray-400 w-16"
+          data-tab="explore"
+        >
+          <i class="ph ph-compass text-2xl"></i>
+          <span class="text-[10px] font-medium">Explore</span>
+        </a>
+        <a
+          href="#/trips"
+          class="nav-item flex flex-col items-center gap-1 text-gray-400 w-16"
+          data-tab="trips"
+        >
+          <i class="ph ph-calendar-check text-2xl"></i>
+          <span class="text-[10px] font-medium">Trips</span>
+        </a>
+        <a
+          href="#/profile"
+          class="nav-item flex flex-col items-center gap-1 text-gray-400 w-16"
+          data-tab="profile"
+        >
+          <i class="ph ph-user text-2xl"></i>
+          <span class="text-[10px] font-medium">Profile</span>
+        </a>
+      </nav>
+
+      <!-- Booking overlay -->
+      <div
+        id="booking-overlay"
+        class="absolute inset-0 bg-black/60 z-50 flex items-end sm:items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
+      >
+        <div
+          id="booking-content"
+          class="bg-white w-full sm:w-[calc(100%-1.5rem)] sm:max-w-[410px] sm:rounded-2xl rounded-t-3xl p-5 pb-[max(1.5rem,env(safe-area-inset-bottom))] transform translate-y-full sm:translate-y-0 sm:scale-95 transition-transform duration-300 max-h-[92vh] overflow-y-auto"
+        >
+          <div class="flex justify-between items-center mb-5 border-b border-gray-100 pb-3">
+            <h3 id="booking-title" class="text-xl font-bold text-gray-800">Book itinerary</h3>
+            <button
+              onclick="closeBookingOverlay()"
+              class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 active:bg-gray-200"
+              aria-label="Close"
+            >
+              <i class="ph ph-x text-lg"></i>
+            </button>
+          </div>
+
+          <div id="booking-body"></div>
+        </div>
+      </div>
+
+      <!-- In-app trip cancel / refund confirm (inside phone frame) -->
+      <div
+        id="trip-cancel-overlay"
+        class="absolute inset-0 z-[60] flex items-center justify-center p-6 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-200"
+        aria-hidden="true"
+      >
+        <div
+          id="trip-cancel-dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="trip-cancel-title"
+          aria-describedby="trip-cancel-message"
+          class="w-full max-w-[300px] bg-white rounded-2xl shadow-xl overflow-hidden transform scale-95 transition-transform duration-200"
+          onclick="event.stopPropagation()"
+        >
+          <div class="p-5">
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3 mx-auto">
+              <i id="trip-cancel-icon" class="ph ph-warning text-2xl"></i>
+            </div>
+            <h3 id="trip-cancel-title" class="text-lg font-bold text-gray-800 text-center">Cancel?</h3>
+            <p id="trip-cancel-message" class="text-sm text-gray-600 text-center mt-2 leading-relaxed"></p>
+            <div class="flex gap-2.5 mt-5">
+              <button
+                type="button"
+                onclick="closeTripCancelConfirm()"
+                class="flex-1 py-3 rounded-xl border border-gray-200 font-semibold text-gray-700 text-sm active:bg-gray-50"
+              >
+                Not now
+              </button>
+              <button
+                type="button"
+                id="trip-cancel-confirm-btn"
+                onclick="confirmTripCancelAction()"
+                class="flex-1 py-3 rounded-xl font-semibold text-white text-sm bg-gray-800 active:bg-gray-900"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const state = {
+        db: null,
+        app: null,
+        profile: null,
+        route: "home",
+        exploreQuery: "",
+        exploreSort: "recommended",
+        exploreSearchFocused: false,
+      };
+
+      const $ = (id) => document.getElementById(id);
+
+      function esc(s) {
+        return String(s ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function fmtHKD(n) {
+        const v = Number(n);
+        if (!Number.isFinite(v)) return "";
+        return "HK$" + v.toLocaleString("en-HK");
+      }
+
+      function fmtShortDate(value) {
+        if (!value) return "TBC";
+        const match = String(value).match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if (!match) return value;
+        const date = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+        return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+      }
+
+      function tripStartMs(t) {
+        const match = String(t?.startDate || "").match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if (!match) return Number.POSITIVE_INFINITY;
+        return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3])).getTime();
+      }
+
+      function sortByTripStartAsc(a, b) {
+        return tripStartMs(a) - tripStartMs(b) || (b.timestamp || 0) - (a.timestamp || 0);
+      }
+
+      function normalizeToken(value) {
+        return String(value || "")
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "_")
+          .replace(/^_+|_+$/g, "");
+      }
+
+      function normalizeTravelTheme(value) {
+        const raw = String(value || "").trim().toLowerCase();
+        const aliasMap = {
+          "city break": "city_break",
+          "city-break": "city_break",
+          food: "foodie",
+          "transit-friendly": "practical",
+          "transit friendly": "practical",
+          quick: "practical",
+        };
+        if (aliasMap[raw]) return aliasMap[raw];
+        const normalized = normalizeToken(raw);
+        if (normalized === "transit_friendly") return "practical";
+        return normalized;
+      }
+
+      function getBooleanQueryParam(name, fallback = false) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const raw = (urlParams.get(name) || "").trim().toLowerCase();
+        if (!raw) return fallback;
+        return !["0", "false", "no", "off"].includes(raw);
+      }
+
+      function getExperimentClockBaseMs() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const raw = Number(urlParams.get("clock") || "");
+        if (Number.isFinite(raw) && raw > 0) {
+          return Math.floor(raw);
+        }
+        return Date.now();
+      }
+
+      const EXP_CLOCK_BASE_MS = getExperimentClockBaseMs();
+      let expClockTick = 0;
+      let expIdTick = 0;
+
+      function nextExpTimestamp(stepMs = 60 * 1000) {
+        expClockTick += 1;
+        return EXP_CLOCK_BASE_MS + expClockTick * stepMs;
+      }
+
+      function nextExpCode(prefix, width = 4) {
+        expIdTick += 1;
+        const modulo = 10 ** width;
+        const code = Math.floor((EXP_CLOCK_BASE_MS + expIdTick * 7919) % modulo);
+        return `${prefix}${String(code).padStart(width, "0")}`;
+      }
+
+      function nextNotificationId() {
+        expIdTick += 1;
+        return 100 + (Math.floor((EXP_CLOCK_BASE_MS + expIdTick * 97) % 900));
+      }
+
+      function getRequestedUserIdFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return (urlParams.get("user") || "").trim();
+      }
+
+      function resolveUserIdForApp(requested, registry, appName, strictMode = true) {
+        const users = (registry?.users || [])
+          .filter((row) => row && row.userId && row.status === "active")
+          .filter((row) => {
+            if (!Array.isArray(row.enabledApps) || row.enabledApps.length === 0) return true;
+            return row.enabledApps.includes(appName);
+          })
+          .map((row) => String(row.userId))
+          .sort((a, b) => a.localeCompare(b));
+
+        if (users.length === 0) {
+          throw new Error(`No active users enabled for app '${appName}'.`);
+        }
+
+        const allowed = new Set(users);
+        if (!requested) return users[0];
+        if (allowed.has(requested)) return requested;
+        if (strictMode) {
+          throw new Error(`Requested user '${requested}' is not active for app '${appName}'.`);
+        }
+        return users[0];
+      }
+
+      function packageById(id) {
+        return state.db?.packages?.find((p) => p.id === id);
+      }
+
+      function appTrips() {
+        return state.app?.trips || [];
+      }
+
+      function tokensForPackage(p) {
+        const hotel = p.hotel || {};
+        const parts = [
+          p.title,
+          p.tagline,
+          p.region,
+          p.country,
+          p.city,
+          String(p.durationDays),
+          p.cabinClass,
+          ...(p.themes || []),
+          ...(p.includes || []),
+          ...(p.highlights || []),
+          ...(hotel.style || []),
+          hotel.name,
+          String(hotel.starRating || ""),
+          p.desc,
+        ]
+          .filter(Boolean)
+          .map((x) => String(x).toLowerCase());
+        return parts.join(" ");
+      }
+
+      function keywordSearchPackages(keyword) {
+        const q = String(keyword || "").trim().toLowerCase();
+        if (!q) return state.db?.packages || [];
+        const words = q.split(/\s+/g).filter(Boolean);
+        return (state.db?.packages || []).filter((p) => {
+          const blob = tokensForPackage(p);
+          return words.every((w) => blob.includes(w));
+        });
+      }
+
+      function scoreForUser(p) {
+        const pref = state.app?.travelPreferences;
+        if (!pref) return 0;
+
+        let s = 0;
+        const regionSet = new Set((pref.destinationRegions || []).map((x) => normalizeToken(x)));
+        if (regionSet.has(normalizeToken(p.region))) s += 20;
+
+        const airportSet = new Set((pref.departureAirports || []).map((x) => normalizeToken(x)));
+        if (airportSet.has(normalizeToken(p.departureAirport))) s += 10;
+
+        const len = p.durationDays;
+        const minD = pref.tripLengthDaysPreferred?.min ?? 0;
+        const maxD = pref.tripLengthDaysPreferred?.max ?? 999;
+        if (len >= minD && len <= maxD) s += 18;
+
+        if (typeof pref.maxStops === "number" && typeof p.maxStops === "number") {
+          if (p.maxStops <= pref.maxStops) s += 10;
+        }
+
+        const cabinRank = { economy: 1, premium_economy: 2, business: 3 };
+        const minCab = normalizeToken(pref.minCabinClass);
+        const pkgCab = normalizeToken(p.cabinClass);
+        if (minCab && cabinRank[pkgCab] >= cabinRank[minCab]) s += 14;
+
+        const minStar = pref.hotelPreferences?.minStarRating ?? 0;
+        const fromNight = pref.hotelPreferences?.fromHKDPerNight ?? 0;
+        if ((p.hotel?.starRating ?? 0) >= minStar) s += 12;
+        if ((p.hotel?.fromHKDPerNight ?? 0) >= fromNight) s += 8;
+
+        const wants = new Set((pref.themeBoost || []).map((x) => normalizeTravelTheme(x)));
+        for (const th of p.themes || []) {
+          if (wants.has(normalizeTravelTheme(th))) s += 3;
+        }
+
+        if ((state.app?.favorites || []).includes(p.id)) s += 10;
+        if ((state.app?.history || []).includes(p.id)) s += 4;
+
+        return s;
+      }
+
+      function setActiveTab(tab) {
+        for (const el of document.querySelectorAll(".nav-item")) {
+          const active = tab && el.dataset.tab === tab;
+          el.classList.toggle("text-primary", active);
+          el.classList.toggle("text-gray-400", !active);
+          const icon = el.querySelector("i");
+          if (!icon) continue;
+          const isFill = icon.className.includes("ph-fill");
+          if (active && !isFill) icon.className = icon.className.replace("ph ", "ph-fill ");
+          if (!active && isFill) icon.className = icon.className.replace("ph-fill ", "ph ");
+        }
+      }
+
+      function parseHash() {
+        const hash = location.hash || "#/home";
+        const segments = hash.replace(/^#\/?/, "").split("/").filter(Boolean);
+        if (segments[0] === "package" && segments[1] != null) {
+          const id = Number(segments[1]);
+          return { tab: null, packageId: Number.isFinite(id) ? id : null };
+        }
+        let tab = (segments[0] || "home").split("?")[0];
+        if (tab === "bookings") tab = "trips";
+        if (!["home", "explore", "trips", "saved", "profile"].includes(tab)) {
+          return { tab: "home", packageId: null };
+        }
+        return { tab, packageId: null };
+      }
+
+      function hashQueryParam(name) {
+        const query = (location.hash.split("?")[1] || "").split("#")[0];
+        return new URLSearchParams(query).get(name);
+      }
+
+      function render() {
+        const main = $("main-content");
+        if (!state.db || !state.app || !state.profile) {
+          main.innerHTML = `
+            <div class="p-6">
+              <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                    <i class="ph ph-airplane text-xl"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-gray-800">Loading travel data…</div>
+                    <div class="text-sm text-gray-500">Preparing packages, profile, and your activity.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        const { tab, packageId } = parseHash();
+        main.classList.remove("fade-in");
+        void main.offsetWidth;
+        main.classList.add("fade-in");
+        main.scrollTop = 0;
+
+        if (packageId != null) {
+          const p = packageById(packageId);
+          if (!p) {
+            location.hash = "#/home";
+            return;
+          }
+          $("app-header").style.display = "none";
+          $("app-nav").style.display = "none";
+          renderPackageDetail(packageId);
+          return;
+        }
+
+        $("app-header").style.display = "";
+        $("app-nav").style.display = "";
+        state.route = tab;
+        setActiveTab(state.route);
+
+        if (state.route === "home") return renderHome();
+        if (state.route === "explore") return renderExplore();
+        if (state.route === "trips") return renderTrips();
+        if (state.route === "saved") return renderSaved();
+        if (state.route === "profile") return renderProfile();
+
+        state.route = "home";
+        renderHome();
+      }
+
+      function sectionHeader(title, subtitle) {
+        return `
+          <div class="px-5 pt-5 pb-3">
+            <div class="flex items-end justify-between gap-4">
+              <div>
+                <div class="text-gray-800 font-bold text-lg">${esc(title)}</div>
+                ${subtitle ? `<div class="text-gray-500 text-sm mt-0.5">${esc(subtitle)}</div>` : ""}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      function pill(text, tone = "gray", onImage = false) {
+        if (onImage) {
+          const overlayStyles = {
+            primary:
+              "bg-emerald-100/95 text-emerald-800 border-emerald-200/90 shadow-sm backdrop-blur-sm font-semibold",
+            sky: "bg-sky-100/95 text-sky-800 border-sky-200/90 shadow-sm backdrop-blur-sm font-semibold",
+            amber:
+              "bg-amber-100/95 text-amber-900 border-amber-200/90 shadow-sm backdrop-blur-sm font-semibold",
+            indigo:
+              "bg-indigo-100/95 text-indigo-800 border-indigo-200/90 shadow-sm backdrop-blur-sm font-semibold",
+            gray: "bg-white/95 text-gray-800 border-gray-200/90 shadow-sm backdrop-blur-sm",
+          };
+          const cls = overlayStyles[tone] || overlayStyles.gray;
+          return `<span class="text-[11px] px-2.5 py-1 rounded-full border ${cls}">${esc(text)}</span>`;
+        }
+        const cls =
+          tone === "primary"
+            ? "bg-primary/10 text-primary border-primary/20"
+            : "bg-gray-50 text-gray-600 border-gray-200";
+        return `<span class="text-[11px] px-2.5 py-1 rounded-full border ${cls}">${esc(text)}</span>`;
+      }
+
+      function compactCabinLabel(cabin) {
+        const raw = String(cabin || "");
+        if (raw.toLowerCase() === "premium economy") return "Premium";
+        return raw || "Flight";
+      }
+
+      function destinationLabel(p) {
+        return p?.city || p?.country || (p?.destinations || [])[0] || "";
+      }
+
+      function fieldLabel(label, forId) {
+        return `<label for="${esc(forId)}" class="block text-[11px] font-bold text-gray-500 mb-1">${esc(label)}</label>`;
+      }
+
+      function packageCard(p, { compact = false } = {}) {
+        const hotel = p.hotel || {};
+        const fav = (state.app.favorites || []).includes(p.id);
+        const cardPad = compact ? "p-3" : "p-4";
+        const imageSize = compact ? "w-20 h-20" : "w-24 h-24";
+        const displayTitle = p.shortName || p.title;
+
+        return `
+          <a href="#/package/${p.id}" class="bg-white rounded-[1.4rem] shadow-sm border border-gray-100 overflow-hidden block relative transition-transform active:scale-[0.98]">
+            <div class="${cardPad} flex gap-3 items-stretch">
+              <div class="relative ${imageSize} shrink-0">
+                <img src="${esc(p.img)}" alt="" class="w-full h-full object-cover rounded-2xl border border-gray-100" />
+                <div class="absolute left-2 bottom-2 px-2 py-1 rounded-full bg-black/55 text-white text-[10px] font-bold backdrop-blur">
+                  ${esc(p.durationDays)} days
+                </div>
+              </div>
+              <div class="flex-1 min-w-0 flex flex-col">
+                <div class="flex items-start justify-between gap-2">
+                  <div class="min-w-0">
+                    <div class="text-gray-900 font-extrabold text-[16px] leading-snug line-clamp-2">${esc(displayTitle)}</div>
+                  </div>
+                  <button
+                    type="button"
+                    class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-gray-500 active:scale-95 transition-transform border border-gray-100 shrink-0"
+                    onclick="event.preventDefault(); event.stopPropagation(); toggleFavorite(${p.id})"
+                    aria-label="Favorite"
+                  >
+                    <i class="${fav ? "ph-fill ph-heart text-primary" : "ph ph-heart"} text-lg"></i>
+                  </button>
+                </div>
+                <div class="mt-2 flex items-center gap-2 text-xs text-gray-500 min-w-0">
+                  <i class="ph ph-airplane-tilt text-primary shrink-0"></i>
+                  <span class="truncate">${esc(compactCabinLabel(p.cabinClass))} · ${esc(p.maxStops)} stop${Number(p.maxStops) === 1 ? "" : "s"}</span>
+                </div>
+                <div class="mt-1.5 flex items-center gap-2 text-xs text-gray-500 min-w-0">
+                  <i class="ph ph-bed text-primary shrink-0"></i>
+                  <span class="truncate">${esc(hotel.starRating)}★ hotel</span>
+                </div>
+                <div class="mt-auto pt-3 flex items-end justify-between gap-3">
+                  <div class="min-w-0">
+                    <div class="text-[11px] text-gray-400">Per traveler</div>
+                    <div class="text-sm font-extrabold text-gray-900">${fmtHKD(p.priceHKD)}</div>
+                  </div>
+                  <div class="text-xs text-gray-500 flex items-center gap-1 shrink-0">
+                    <i class="ph-fill ph-star text-amber-500"></i>
+                    <span class="font-bold text-gray-700">${esc(p.rating ?? "")}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 pb-3">
+              <div class="border-t border-dashed border-gray-200 pt-2 flex items-center justify-between gap-3 text-[11px] text-gray-500">
+                <span class="truncate">${esc(p.region)} · ${esc(destinationLabel(p))}</span>
+                <span class="font-semibold text-primary">View itinerary</span>
+              </div>
+            </div>
+          </a>
+        `;
+      }
+
+      function renderHome() {
+        const main = $("main-content");
+        const prof = state.app.profile || {};
+        const name = prof.name || state.profile?.pii?.name || "Traveler";
+        const trips = appTrips().slice();
+        const nextTrip = trips.filter((t) => t.status === "confirmed").sort(sortByTripStartAsc)[0];
+        const nextPkg = nextTrip ? packageById(nextTrip.packageId) : null;
+        const heroLabel = nextTrip && nextPkg ? "Next trip" : "Next escape";
+        const heroTitle = nextTrip && nextPkg ? nextPkg.shortName || nextPkg.title : `Hi, ${name.split(" ")[0]}`;
+        const heroSubtitle =
+          nextTrip && nextPkg
+            ? `${fmtShortDate(nextTrip.startDate)} · ${destinationLabel(nextPkg)} · ${nextTrip.travelers || 1} traveler${Number(nextTrip.travelers || 1) === 1 ? "" : "s"}`
+            : "Plan your trip and travel freely.";
+        const heroActionText = nextTrip && nextPkg ? "View trip details" : "Search your journey";
+        const heroAction = nextTrip && nextPkg ? "location.hash='#/trips'" : "focusSearch()";
+        const heroIcon = nextTrip && nextPkg ? "ph-ticket" : "ph-magnifying-glass";
+
+        const picks = [...state.db.packages]
+          .map((p) => ({ p, s: scoreForUser(p) }))
+          .sort((a, b) => b.s - a.s)
+          .slice(0, 5)
+          .map((x) => x.p);
+
+        main.innerHTML = `
+          <div class="px-4 pt-5">
+            <div class="relative overflow-hidden rounded-[1.75rem] border border-sky-100 bg-gradient-to-br from-sky-900 via-primary to-cyan-400 p-5 shadow-sm text-white">
+              <div class="absolute -right-10 -top-10 w-28 h-28 rounded-full bg-white/15"></div>
+              <div class="absolute right-8 bottom-4 w-20 h-20 rounded-full border border-white/20"></div>
+              <div class="relative flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-white/75 text-xs font-bold uppercase tracking-[0.06em]">${esc(heroLabel)}</div>
+                  <div class="font-extrabold text-2xl mt-1">${esc(heroTitle)}</div>
+                  <div class="text-white/85 text-sm mt-1 leading-relaxed">${esc(heroSubtitle)}</div>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-white/20 border border-white/25 flex items-center justify-center text-white shadow-sm shrink-0">
+                  <i class="ph ph-airplane-takeoff text-2xl"></i>
+                </div>
+              </div>
+              <button type="button" onclick="${heroAction}" class="relative mt-5 w-full bg-white text-gray-900 rounded-2xl p-3 flex items-center gap-3 text-left active:scale-[0.99] transition-transform">
+                <span class="w-9 h-9 rounded-xl bg-sky-50 text-primary flex items-center justify-center shrink-0">
+                  <i class="ph ${heroIcon} text-lg"></i>
+                </span>
+                <span class="min-w-0">
+                  <span class="block font-semibold text-sm">${esc(heroActionText)}</span>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          ${sectionHeader("Recommendation", "Popular trip ideas for your next break")}
+          <div class="px-5 grid grid-cols-1 gap-4">
+            ${picks.map((p) => packageCard(p)).join("")}
+          </div>
+          <div class="pb-6"></div>
+        `;
+      }
+
+      function exploreSortSelectOptionsHtml() {
+        const cur = state.exploreSort || "recommended";
+        const opts = [
+          ["recommended", "Recommended"],
+          ["price-asc", "Price · Low to high"],
+          ["price-desc", "Price · High to low"],
+          ["rating-desc", "Rating · High to low"],
+          ["rating-asc", "Rating · Low to high"],
+          ["days-asc", "Trip length · Short first"],
+          ["days-desc", "Trip length · Long first"],
+          ["stars-desc", "Hotel stars · High to low"],
+          ["stars-asc", "Hotel stars · Low to high"],
+          ["stops-asc", "Stops · Fewest first"],
+        ];
+        return opts
+          .map(
+            ([v, label]) =>
+              `<option value="${esc(v)}"${v === cur ? " selected" : ""}>${esc(label)}</option>`
+          )
+          .join("");
+      }
+
+      function exploreSortedPackages() {
+        const results = state.exploreQuery
+          ? keywordSearchPackages(state.exploreQuery)
+          : state.db.packages;
+        const list = [...results];
+        const sortKey = state.exploreSort || "recommended";
+
+        const n = (x) => (Number.isFinite(Number(x)) ? Number(x) : 0);
+        const by = (get, desc) => (a, b) => {
+          const va = n(get(a));
+          const vb = n(get(b));
+          return desc ? vb - va : va - vb;
+        };
+
+        if (sortKey === "recommended") {
+          return list
+            .map((p) => ({ p, s: scoreForUser(p) }))
+            .sort((a, b) => b.s - a.s)
+            .map((x) => x.p);
+        }
+        if (sortKey === "price-asc") list.sort(by((p) => p.priceHKD, false));
+        else if (sortKey === "price-desc") list.sort(by((p) => p.priceHKD, true));
+        else if (sortKey === "rating-desc") list.sort(by((p) => p.rating, true));
+        else if (sortKey === "rating-asc") list.sort(by((p) => p.rating, false));
+        else if (sortKey === "days-asc") list.sort(by((p) => p.durationDays, false));
+        else if (sortKey === "days-desc") list.sort(by((p) => p.durationDays, true));
+        else if (sortKey === "stars-desc") list.sort(by((p) => p.hotel?.starRating, true));
+        else if (sortKey === "stars-asc") list.sort(by((p) => p.hotel?.starRating, false));
+        else if (sortKey === "stops-asc") list.sort(by((p) => p.maxStops ?? 99, false));
+        return list;
+      }
+
+      function onExploreSortChange(value) {
+        state.exploreSort = value || "recommended";
+        const sel = $("explore-sort-select");
+        if (sel) sel.value = state.exploreSort;
+        updateExploreResults();
+      }
+
+      function updateExploreResults() {
+        if (parseHash().tab !== "explore") return;
+        const top = exploreSortedPackages();
+        const countEl = $("explore-results-count");
+        const gridEl = $("explore-results");
+        if (!countEl || !gridEl) return;
+        countEl.textContent = top.length + " results";
+        gridEl.innerHTML = top.map((p) => packageCard(p)).join("");
+      }
+
+      function exploreHistoryHtml() {
+        const recentKeywords = (state.app.search_history || []).slice(0, 6);
+        if (!state.exploreSearchFocused || !recentKeywords.length) return "";
+        return `
+          <div id="explore-history" class="mt-3 bg-gray-50 border border-gray-100 rounded-2xl p-2">
+            <div class="px-2 py-1 text-[11px] font-bold text-gray-400 uppercase tracking-wide">Search history</div>
+            <div class="flex flex-col">
+              ${recentKeywords
+                .map(
+                  (k) => `<div class="flex items-center justify-between gap-2 rounded-xl hover:bg-white transition-colors">
+                    <button type="button" class="flex-1 min-w-0 text-left px-2 py-2 text-sm text-gray-700 truncate" onmousedown="event.preventDefault()" onclick="applyKeyword('${esc(
+                      k.replaceAll("'", "\\'")
+                    )}')">${esc(k)}</button>
+                    <button type="button" class="shrink-0 w-7 h-7 rounded-full bg-white border border-gray-200 text-gray-400 flex items-center justify-center active:bg-gray-100" onmousedown="event.preventDefault(); event.stopPropagation()" onclick="deleteSearchHistory('${esc(
+                      k.replaceAll("'", "\\'")
+                    )}')" aria-label="Remove search">
+                      <i class="ph ph-x text-xs"></i>
+                    </button>
+                  </div>`
+                )
+                .join("")}
+            </div>
+          </div>
+        `;
+      }
+
+      function updateExploreHistory() {
+        const host = $("explore-history-host");
+        if (host) host.innerHTML = exploreHistoryHtml();
+      }
+
+      function showExploreHistory() {
+        state.exploreSearchFocused = true;
+        clearTimeout(state._exploreBlurTimer);
+        updateExploreHistory();
+      }
+
+      function hideExploreHistorySoon() {
+        clearTimeout(state._exploreBlurTimer);
+        state._exploreBlurTimer = setTimeout(() => {
+          state.exploreSearchFocused = false;
+          updateExploreHistory();
+        }, 120);
+      }
+
+      function renderExplore() {
+        const main = $("main-content");
+
+        main.innerHTML = `
+          ${sectionHeader("Explore", "Search destinations, stays, and packages.")}
+          <div class="px-5">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 py-3 px-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-8 rounded-2xl bg-gray-50 flex items-center justify-center text-gray-500">
+                  <i class="ph ph-magnifying-glass text-xl"></i>
+                </div>
+                <input
+                  id="explore-search"
+                  value="${esc(state.exploreQuery)}"
+                  placeholder="Search your journey"
+                  class="w-full bg-transparent outline-none text-sm text-gray-800 placeholder:text-gray-400"
+                  oninput="onExploreInput(this.value)"
+                  onfocus="showExploreHistory()"
+                  onblur="hideExploreHistorySoon()"
+                />
+              </div>
+              <div id="explore-history-host">${exploreHistoryHtml()}</div>
+            </div>
+          </div>
+
+          <div class="px-5 pt-4 pb-2 flex flex-col gap-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <div class="text-xs text-gray-500 shrink-0"><span id="explore-results-count">0 results</span></div>
+              <div class="flex items-center gap-2 min-w-0 flex-1 justify-end">
+                <label for="explore-sort-select" class="text-[11px] font-semibold text-gray-500 shrink-0">Sort</label>
+                <select
+                  id="explore-sort-select"
+                  class="text-xs font-medium text-gray-800 bg-gray-100 border border-gray-200 rounded-xl px-3 py-2 max-w-[min(14rem,55vw)] outline-none focus:border-primary focus:ring-1 focus:ring-primary/30"
+                  onchange="onExploreSortChange(this.value)"
+                >
+                  ${exploreSortSelectOptionsHtml()}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div id="explore-results" class="px-5 pb-6 grid grid-cols-1 gap-4"></div>
+        `;
+
+        updateExploreResults();
+
+        const el = $("explore-search");
+        if (el && document.activeElement?.id !== "explore-search" && state._focusSearchOnRender) {
+          state._focusSearchOnRender = false;
+          el.focus();
+        }
+      }
+
+      function tripStatusLabel(t) {
+        if (t.status === "confirmed") return "Booked";
+        if (t.status === "completed") return "Completed";
+        if (t.status === "canceled") {
+          return t.refundStatus === "pending" ? "Canceled · Refund pending" : "Canceled";
+        }
+        return t.status || "";
+      }
+
+      function tripStatusTone(t) {
+        if (t.status === "confirmed")
+          return "bg-emerald-50 text-emerald-700 border-emerald-200";
+        if (t.status === "canceled")
+          return t.refundStatus === "pending"
+            ? "bg-rose-50 text-rose-700 border-rose-200"
+            : "bg-slate-100 text-slate-600 border-slate-200";
+        return "bg-gray-50 text-gray-600 border-gray-200";
+      }
+
+      function renderSaved() {
+        const main = $("main-content");
+        const favs = (state.app.favorites || []).map(packageById).filter(Boolean);
+        const recent = (state.app.history || [])
+          .map(packageById)
+          .filter((p) => p && !(state.app.favorites || []).includes(p.id))
+          .slice(0, 3);
+
+        main.innerHTML = `
+          ${sectionHeader("Saved trips", favs.length ? "Your shortlisted packages in one place" : "Save packages to compare later")}
+          <div class="px-5 pb-6 grid grid-cols-1 gap-4">
+            ${
+              favs.length
+                ? favs.map((p) => packageCard(p)).join("")
+                : `<div class="bg-white rounded-2xl border border-gray-100 p-5 text-gray-600 text-sm">No saved packages yet. Tap the heart on any package to keep it here.</div>`
+            }
+            ${
+              !favs.length && recent.length
+                ? `<div class="pt-2">
+                    <div class="text-gray-800 font-bold text-lg mb-3">Recently viewed</div>
+                    <div class="grid grid-cols-1 gap-4">${recent.map((p) => packageCard(p, { compact: true })).join("")}</div>
+                  </div>`
+                : ""
+            }
+          </div>
+        `;
+      }
+
+      function openTripCancelConfirm(tripId, kind) {
+        const trips = appTrips();
+        const t = trips.find((x) => x.id === tripId);
+        if (!t) return;
+        if (kind === "confirmed" && t.status !== "confirmed") return;
+
+        state._tripCancelPending = { tripId, kind };
+        const titleEl = $("trip-cancel-title");
+        const msgEl = $("trip-cancel-message");
+        const btn = $("trip-cancel-confirm-btn");
+        const iconWrap = $("trip-cancel-icon").parentElement;
+
+        const icon = $("trip-cancel-icon");
+        titleEl.textContent = "Cancel trip & refund?";
+        msgEl.textContent =
+          "This will cancel your booked trip. Our team will contact you about refund timing and any fees that may apply.";
+        btn.textContent = "Cancel & refund";
+        btn.className =
+          "flex-1 py-3 rounded-xl font-semibold text-white text-sm bg-red-600 active:bg-red-700";
+        iconWrap.className =
+          "w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mb-3 mx-auto";
+        icon.className = "ph ph-currency-circle-dollar text-2xl";
+
+        const overlay = $("trip-cancel-overlay");
+        const dialog = $("trip-cancel-dialog");
+        overlay.classList.remove("opacity-0", "pointer-events-none");
+        overlay.classList.add("opacity-100");
+        overlay.setAttribute("aria-hidden", "false");
+        dialog.classList.remove("scale-95");
+        dialog.classList.add("scale-100");
+      }
+
+      function closeTripCancelConfirm() {
+        state._tripCancelPending = null;
+        const overlay = $("trip-cancel-overlay");
+        const dialog = $("trip-cancel-dialog");
+        overlay.classList.add("opacity-0", "pointer-events-none");
+        overlay.classList.remove("opacity-100");
+        overlay.setAttribute("aria-hidden", "true");
+        dialog.classList.add("scale-95");
+        dialog.classList.remove("scale-100");
+      }
+
+      function confirmTripCancelAction() {
+        const pending = state._tripCancelPending;
+        if (!pending) return;
+        const { tripId, kind } = pending;
+        const trips = appTrips();
+        const t = trips.find((x) => x.id === tripId);
+        closeTripCancelConfirm();
+        if (!t) return;
+
+        if (kind === "confirmed") {
+          if (t.status !== "confirmed") return;
+          t.status = "canceled";
+          t.canceledAt = nextExpTimestamp();
+          t.refundStatus = "pending";
+          state.app.notifications = state.app.notifications || [];
+          state.app.notifications.unshift({
+            id: nextNotificationId(),
+            title: "Cancellation & refund started",
+            desc: `We received your cancellation for “${packageById(t.packageId)?.title || "this trip"}”. Refund processing will follow our policy.`,
+            time: "Just now",
+            unread: true,
+          });
+        }
+        renderNotifications();
+        render();
+      }
+
+      function cancelTripBooking(tripId, kind) {
+        openTripCancelConfirm(tripId, kind);
+      }
+
+      function renderTrips() {
+        const main = $("main-content");
+        const trips = appTrips();
+        const tripCard = (t) => {
+          const p = packageById(t.packageId);
+          if (!p) return "";
+          const totalHKD = t.totalHKD ?? (Number(p.priceHKD) || 0) * (Number(t.travelers) || 1);
+          const statusTone = tripStatusTone(t);
+          const statusText = tripStatusLabel(t);
+          const canCancelConfirmed = t.status === "confirmed";
+          const actions =
+            canCancelConfirmed
+              ? `<div class="mt-4 flex flex-wrap gap-2">
+                  ${
+                    canCancelConfirmed
+                      ? `<button type="button" class="text-xs font-semibold px-3 py-2 rounded-xl border border-red-200 text-red-700 bg-red-50 active:bg-red-100" onclick='cancelTripBooking(${JSON.stringify(
+                          t.id
+                        )}, "confirmed")'>Cancel & refund</button>`
+                      : ""
+                  }
+                </div>`
+              : "";
+          return `
+            <div class="bg-white rounded-[1.4rem] shadow-sm border border-gray-100 p-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="min-w-0">
+                  <span class="inline-flex max-w-full text-[11px] px-2.5 py-1 rounded-full border ${statusTone} leading-snug">${esc(statusText)}</span>
+                  <div class="font-extrabold text-gray-900 text-[15px] leading-snug mt-2 line-clamp-2">${esc(p.title)}</div>
+                  <div class="text-xs text-gray-500 mt-1">${esc(destinationLabel(p))} · ${esc(p.durationDays)} days</div>
+                </div>
+                <a href="#/package/${p.id}" class="w-14 h-14 rounded-2xl overflow-hidden border border-gray-100 shrink-0 active:scale-95 transition-transform">
+                  <img src="${esc(p.img)}" class="w-full h-full object-cover" alt="" />
+                </a>
+              </div>
+              <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
+                <div class="rounded-2xl bg-slate-50 p-3">
+                  <div class="text-gray-400">Start date</div>
+                  <div class="font-bold text-gray-800 mt-1">${esc(t.startDate || "TBC")}</div>
+                </div>
+                <div class="rounded-2xl bg-slate-50 p-3">
+                  <div class="text-gray-400">Travelers</div>
+                  <div class="font-bold text-gray-800 mt-1">${esc(t.travelers || 1)}</div>
+                </div>
+                <div class="rounded-2xl bg-slate-50 p-3">
+                  <div class="text-gray-400">Cabin</div>
+                  <div class="font-bold text-gray-800 mt-1 truncate">${esc(p.cabinClass || "")}</div>
+                </div>
+                <div class="rounded-2xl bg-slate-50 p-3">
+                  <div class="text-gray-400">Total</div>
+                  <div class="font-bold text-gray-800 mt-1">${fmtHKD(totalHKD)}</div>
+                </div>
+              </div>
+              ${t.msg ? `<div class="mt-3 text-xs text-gray-600 bg-sky-50/70 border border-sky-100 rounded-2xl p-3 line-clamp-3">${esc(t.msg)}</div>` : ""}
+              ${actions}
+            </div>
+          `;
+        };
+
+        const activeRows = trips
+          .slice()
+          .filter((t) => t.status === "confirmed")
+          .sort(sortByTripStartAsc)
+          .map(tripCard)
+          .filter(Boolean)
+          .join("");
+        const historyRows = trips
+          .slice()
+          .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0))
+          .filter((t) => t.status === "canceled" || t.status === "completed")
+          .map(tripCard)
+          .filter(Boolean)
+          .join("");
+
+        main.innerHTML = `
+          ${sectionHeader("Trips", "Track booked trips, cancellations, and past records.")}
+          <div class="px-5 pb-6 grid grid-cols-1 gap-4">
+            ${
+              activeRows ||
+              `<div class="bg-white rounded-2xl border border-gray-100 p-5 text-gray-600 text-sm">No trips yet. Browse Explore to book a package.</div>`
+            }
+            ${
+              historyRows
+                ? `<div id="trip-history-section" class="pt-2">
+                    <div class="text-gray-800 font-bold text-lg mb-3">Trip history</div>
+                    <div class="grid grid-cols-1 gap-4">${historyRows}</div>
+                  </div>`
+                : ""
+            }
+          </div>
+        `;
+        if (hashQueryParam("section") === "history") {
+          setTimeout(() => $("trip-history-section")?.scrollIntoView({ block: "start", behavior: "smooth" }), 0);
+        }
+      }
+
+      function renderProfile() {
+        const main = $("main-content");
+        const prof = state.app.profile || {};
+        const favCount = (state.app.favorites || []).length;
+        const trips = appTrips();
+        const tripsActive = appTrips().filter((t) =>
+          t.status === "confirmed"
+        ).length;
+        const historyTrips = trips
+          .slice()
+          .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0))
+          .filter((t) => t.status === "completed" || t.status === "canceled");
+        const historyPreview = historyTrips.slice(0, 3);
+
+        main.innerHTML = `
+          ${sectionHeader("Profile", "Account, saved trips, and travel history")}
+          <div class="px-5">
+            <div class="relative overflow-hidden rounded-[1.5rem] border border-sky-100 bg-gradient-to-br from-white to-sky-50 p-5 shadow-sm">
+              <div class="absolute -right-8 -top-8 w-24 h-24 rounded-full bg-sky-100/70"></div>
+              <div class="relative flex items-center gap-4">
+                <img src="${esc(prof.avatar || "")}" alt="" class="w-14 h-14 rounded-2xl object-cover border border-white shadow-sm" />
+                <div class="min-w-0">
+                  <div class="font-extrabold text-gray-900">${esc(prof.name || "")}</div>
+                  <div class="text-sm text-gray-500 truncate">${esc(prof.email || "")}</div>
+                  <div class="text-xs text-gray-500 mt-1">${esc(prof.phone || "")}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-5 pt-5 grid grid-cols-3 gap-2.5">
+            <button type="button" onclick="location.hash='#/saved'" class="bg-white rounded-2xl border border-gray-100 p-3 text-left shadow-sm active:bg-gray-50">
+              <div class="w-9 h-9 rounded-xl bg-sky-50 text-primary flex items-center justify-center mb-2">
+                <i class="ph ph-heart text-xl"></i>
+              </div>
+              <div class="text-[11px] font-bold text-gray-500">Saved</div>
+              <div class="font-extrabold text-gray-900 text-lg">${esc(favCount)}</div>
+            </button>
+            <button type="button" onclick="location.hash='#/trips'" class="bg-white rounded-2xl border border-gray-100 p-3 text-left shadow-sm active:bg-gray-50">
+              <div class="w-9 h-9 rounded-xl bg-slate-50 text-primary flex items-center justify-center mb-2">
+                <i class="ph ph-ticket text-xl"></i>
+              </div>
+              <div class="text-[11px] font-bold text-gray-500">Active</div>
+              <div class="font-extrabold text-gray-900 text-lg">${esc(tripsActive)}</div>
+            </button>
+            <button type="button" onclick="location.hash='#/trips?section=history'" class="bg-white rounded-2xl border border-gray-100 p-3 text-left shadow-sm active:bg-gray-50">
+              <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-2">
+                <i class="ph ph-clock-counter-clockwise text-xl"></i>
+              </div>
+              <div class="text-[11px] font-bold text-gray-500">History</div>
+              <div class="font-extrabold text-gray-900 text-lg">${esc(historyTrips.length)}</div>
+            </button>
+          </div>
+
+          ${sectionHeader("Travel history", historyTrips.length ? "Recent completed and canceled trips" : "Past trips will appear here")}
+          <div class="px-5 grid grid-cols-1 gap-3">
+            ${
+              historyPreview.length
+                ? historyPreview
+                    .map((t) => {
+                      const p = packageById(t.packageId);
+                      if (!p) return "";
+                      return `
+                        <button type="button" onclick="location.hash='#/trips?section=history'" class="w-full text-left bg-white rounded-2xl border border-gray-100 p-4 shadow-sm active:bg-gray-50">
+                          <div class="flex items-center justify-between gap-3">
+                            <div class="min-w-0">
+                              <div class="text-[11px] font-bold uppercase tracking-[0.04em] text-gray-400">${esc(tripStatusLabel(t))}</div>
+                              <div class="font-bold text-gray-900 mt-1 truncate">${esc(p.shortName || p.title)}</div>
+                              <div class="text-xs text-gray-500 mt-1">${esc(destinationLabel(p))} · ${esc(fmtShortDate(t.startDate))}</div>
+                            </div>
+                            <i class="ph ph-caret-right text-gray-400 shrink-0"></i>
+                          </div>
+                        </button>
+                      `;
+                    })
+                    .join("")
+                : `<button type="button" onclick="location.hash='#/trips'" class="w-full text-left bg-white rounded-2xl border border-gray-100 p-5 text-gray-600 text-sm shadow-sm">No travel history yet.</button>`
+            }
+            ${
+              historyTrips.length > historyPreview.length
+                ? `<button type="button" onclick="location.hash='#/trips?section=history'" class="text-sm font-bold text-primary bg-sky-50 border border-sky-100 rounded-2xl py-3 active:bg-sky-100">View all history</button>`
+                : ""
+            }
+          </div>
+
+          ${sectionHeader("Account tools")}
+          <div class="px-5 pb-6 grid grid-cols-1 gap-3">
+            <div class="flex items-center justify-between bg-white rounded-2xl border border-gray-100 p-4 shadow-sm">
+              <span class="flex items-center gap-3 min-w-0">
+                <span class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <i class="ph ph-identification-card text-xl"></i>
+                </span>
+                <span class="min-w-0">
+                  <div class="font-semibold text-gray-800 truncate">Passenger details</div>
+                  <div class="text-[11px] text-gray-500 mt-0.5 truncate">Names, passport, and emergency contact</div>
+                </span>
+              </span>
+              <i class="ph ph-caret-right text-gray-400 shrink-0"></i>
+            </div>
+            <div class="flex items-center justify-between bg-white rounded-2xl border border-gray-100 p-4 shadow-sm">
+              <span class="flex items-center gap-3 min-w-0">
+                <span class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <i class="ph ph-credit-card text-xl"></i>
+                </span>
+                <span class="min-w-0">
+                  <div class="font-semibold text-gray-800 truncate">Payment methods</div>
+                  <div class="text-[11px] text-gray-500 mt-0.5 truncate">Cards and invoice details</div>
+                </span>
+              </span>
+              <i class="ph ph-caret-right text-gray-400 shrink-0"></i>
+            </div>
+            <a href="mailto:concierge@travelapp.com" class="flex items-center justify-between bg-white rounded-2xl border border-gray-100 p-4 shadow-sm active:bg-gray-50 transition-colors">
+              <span class="flex items-center gap-3 min-w-0">
+                <span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                  <i class="ph ph-envelope-simple text-xl"></i>
+                </span>
+                <span class="min-w-0">
+                  <div class="font-semibold text-gray-800 truncate">Email concierge</div>
+                  <div class="text-[11px] text-gray-500 mt-0.5 truncate">concierge@travelapp.com</div>
+                </span>
+              </span>
+              <i class="ph ph-arrow-square-out text-gray-400 shrink-0"></i>
+            </a>
+          </div>
+        `;
+      }
+
+      function renderPackageDetail(id) {
+        const p = packageById(id);
+        if (!p) return;
+        if (!state.app.history.includes(id)) state.app.history.unshift(id);
+
+        const main = $("main-content");
+        const hotel = p.hotel || {};
+        const breakdown = p.priceBreakdownHKD || {};
+        const dest = destinationLabel(p);
+        const themes = (p.themes || []).map((t) => pill(t, "primary")).join("");
+        const fav = (state.app.favorites || []).includes(p.id);
+        const favBtnClass = fav
+          ? "bg-white text-primary border-2 border-primary shadow-md"
+          : "bg-white/90 backdrop-blur-md text-gray-400 border border-gray-100";
+
+        main.innerHTML = `
+          <div class="relative bg-white min-h-full flex flex-col">
+            <div class="flex-1">
+              <div class="sticky top-[max(1rem,env(safe-area-inset-top))] z-40 flex justify-between px-4 pointer-events-none" style="height:0">
+                <button type="button" onclick="window.history.back()" class="pointer-events-auto w-10 h-10 bg-white/90 backdrop-blur-md shadow-md border border-gray-100 rounded-full flex items-center justify-center text-gray-700 active:scale-95 transition-transform" aria-label="Back">
+                  <i class="ph ph-caret-left text-xl"></i>
+                </button>
+                <button type="button" onclick="toggleFavorite(${p.id})" class="pointer-events-auto w-10 h-10 rounded-full flex items-center justify-center z-10 transition-colors shadow-md ${favBtnClass} active:scale-95" aria-label="Favorite">
+                  <i class="${fav ? "ph-fill" : "ph"} ph-heart text-xl"></i>
+                </button>
+              </div>
+              <div class="h-72 w-full relative">
+                <img src="${esc(p.img)}" class="w-full h-full object-cover" alt="" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/35"></div>
+                <div class="absolute bottom-4 right-5 bg-black/55 backdrop-blur-sm text-white px-2.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 z-20 shadow-lg max-w-[calc(100%-2.5rem)]">
+                  <i class="ph-fill ph-star text-amber-400 text-sm shrink-0"></i>
+                  <span class="truncate">${esc(p.rating ?? "—")}</span>
+                  <span class="opacity-80 font-normal shrink-0">(${esc(p.reviewCount ?? 0)})</span>
+                </div>
+                <div class="absolute bottom-5 left-5 right-5 text-white z-10 pr-2">
+                  <span class="bg-primary px-3 py-1 rounded-full text-xs font-bold mb-2 inline-block">${esc(p.region)} · ${esc(
+          p.country || ""
+        )}</span>
+                  <h1 class="text-2xl font-bold leading-tight">${esc(p.title)}</h1>
+                  <p class="text-sm opacity-90 mt-1 line-clamp-2">${esc(p.tagline || "")}</p>
+                  <p class="text-sm opacity-85 flex items-center gap-1 mt-2"><i class="ph ph-map-pin"></i>${esc(dest)}</p>
+                </div>
+              </div>
+
+              <div class="px-5 py-6 space-y-6">
+                <div class="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-stretch bg-gray-50 p-3 rounded-2xl gap-1 text-center">
+                  <div class="h-20 flex flex-col items-center justify-center min-w-0">
+                    <i class="ph ph-calendar text-2xl text-gray-400 mb-1"></i>
+                    <span class="font-bold text-gray-800 text-sm leading-tight">${esc(p.durationDays)} days</span>
+                  </div>
+                  <div class="w-px bg-gray-200 self-stretch my-1"></div>
+                  <div class="h-20 flex flex-col items-center justify-center min-w-0 px-1">
+                    <i class="ph ph-airplane text-2xl text-gray-400 mb-1"></i>
+                    <span class="font-bold text-gray-800 text-xs leading-tight text-center max-w-[5.4rem]">${esc(p.cabinClass)}</span>
+                  </div>
+                  <div class="w-px bg-gray-200 self-stretch my-1"></div>
+                  <div class="h-20 flex flex-col items-center justify-center min-w-0">
+                    <i class="ph ph-path text-2xl text-gray-400 mb-1"></i>
+                    <span class="font-bold text-gray-800 text-sm leading-tight">≤${esc(p.maxStops)} stop</span>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2">${themes}</div>
+
+                <div>
+                  <h2 class="font-bold text-lg text-gray-800 mb-2">About this trip</h2>
+                  <p class="text-gray-600 text-sm leading-relaxed">${esc(p.desc || "")}</p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-3">
+                  <div class="bg-gray-50 rounded-2xl border border-gray-100 p-4">
+                    <div class="text-xs font-bold text-gray-500">Hotel</div>
+                    <div class="font-semibold text-gray-800 mt-1">${esc(hotel.name || "")}</div>
+                    <div class="text-xs text-gray-500 mt-1">${esc(hotel.starRating)}★ · from ${fmtHKD(
+          hotel.fromHKDPerNight
+        )}/night</div>
+                    <div class="mt-3 flex gap-2 flex-wrap">${(hotel.style || []).slice(0, 6).map((s) => pill(s)).join("")}</div>
+                  </div>
+                  <div class="bg-gray-50 rounded-2xl border border-gray-100 p-4">
+                    <div class="text-xs font-bold text-gray-500">Per-traveler breakdown</div>
+                    <div class="font-extrabold text-gray-900 mt-1 text-lg">${fmtHKD(p.priceHKD)}</div>
+                    <div class="text-xs text-gray-500 mt-0.5">per traveler</div>
+                    <div class="mt-3 text-xs text-gray-600 space-y-1.5">
+                      <div class="flex justify-between gap-2"><span>Flights</span><span class="font-semibold shrink-0">${fmtHKD(
+                        breakdown.flights
+                      )}</span></div>
+                      <div class="flex justify-between gap-2"><span>Hotel</span><span class="font-semibold shrink-0">${fmtHKD(
+                        breakdown.hotel
+                      )}</span></div>
+                      <div class="flex justify-between gap-2"><span>Activities / transfers</span><span class="font-semibold shrink-0">${fmtHKD(
+                        breakdown.activitiesAndTransfers
+                      )}</span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl border border-gray-100 p-4">
+                  <div class="text-xs font-bold text-gray-500">Included</div>
+                  <div class="mt-3 flex gap-2 flex-wrap">
+                    ${(p.includes || []).map((x) => pill(x, "primary")).join("")}
+                  </div>
+                  <div class="mt-4 text-xs font-bold text-gray-500">Highlights</div>
+                  <ul class="mt-2 space-y-2 text-sm text-gray-700">
+                    ${(p.highlights || [])
+                      .slice(0, 8)
+                      .map(
+                        (h) =>
+                          `<li class="flex items-start gap-2"><i class="ph ph-check-circle text-primary mt-0.5 shrink-0"></i><span>${esc(
+                            h
+                          )}</span></li>`
+                      )
+                      .join("")}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="sticky bottom-0 w-full bg-white border-t border-gray-100 px-4 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))] flex justify-between items-center gap-3 z-40 shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.03)] mt-auto">
+              <div class="min-w-0">
+                <p class="text-xs text-gray-400 font-medium">Per traveler</p>
+                <p class="font-bold text-xl text-primary truncate">${fmtHKD(p.priceHKD)}</p>
+              </div>
+              <button type="button" onclick="openBookingForm(${p.id})" class="shrink-0 bg-primary text-white px-6 py-3 rounded-xl font-bold shadow-lg shadow-primary/25 active:scale-95 transition-transform">
+                Book itinerary
+              </button>
+            </div>
+          </div>
+        `;
+        renderNotifications();
+      }
+
+      function openBookingForm(id) {
+        const p = packageById(id);
+        if (!p) return;
+        const prof = state.app.profile || {};
+        const payment = state.profile?.pii?.paymentMethod || {};
+        const travelersDefault = 1;
+        const displayTitle = p.shortName || p.title;
+        const inputClass =
+          "w-full bg-gray-50 border border-gray-200 text-gray-800 py-2.5 px-3 rounded-xl outline-none focus:border-primary transition-colors text-sm";
+
+        $("booking-title").textContent = "Book itinerary";
+        $("booking-body").innerHTML = `
+          <div class="rounded-2xl border border-sky-100 bg-gradient-to-br from-sky-50 to-white p-4 shadow-sm">
+            <div class="flex items-stretch justify-between gap-3">
+              <div class="min-w-0">
+                <div class="text-[11px] font-bold uppercase tracking-[0.06em] text-primary">Booking summary</div>
+                <div class="font-extrabold text-gray-900 mt-1 leading-snug">${esc(displayTitle)}</div>
+                <div class="text-xs text-gray-500 mt-1 leading-relaxed">${esc(destinationLabel(p))} · ${esc(p.durationDays)} days · ${esc(compactCabinLabel(p.cabinClass))} · ${esc(p.hotel?.starRating)}★ hotel</div>
+              </div>
+              <div class="text-right shrink-0 flex flex-col justify-end">
+                <div id="booking-total-note" class="text-[11px] text-gray-500">1 traveler</div>
+                <div id="booking-total" class="font-extrabold text-primary">${fmtHKD(p.priceHKD)}</div>
+              </div>
+            </div>
+          </div>
+
+          <form class="mt-4 space-y-3" onsubmit="submitTrip(event, ${p.id})">
+            <input id="bk-traveler-title" type="hidden" value="${esc(prof.title || "Mr.")}" />
+
+            <div>
+              <div class="text-sm font-extrabold text-gray-700 mb-2">Traveler information</div>
+              <div class="grid grid-cols-1 gap-2.5">
+                <div>
+                  ${fieldLabel("Full name", "bk-name")}
+                  <input
+                    id="bk-name"
+                    type="text"
+                    required
+                    value="${esc(prof.name || "")}"
+                    placeholder="Full name"
+                    class="${inputClass}"
+                  />
+                </div>
+                <div>
+                  ${fieldLabel("Email", "bk-email")}
+                  <input
+                    id="bk-email"
+                    type="email"
+                    required
+                    value="${esc(prof.email || "")}"
+                    placeholder="Email"
+                    class="${inputClass}"
+                  />
+                </div>
+                <div>
+                  ${fieldLabel("Phone", "bk-phone")}
+                  <input
+                    id="bk-phone"
+                    type="tel"
+                    required
+                    value="${esc(prof.phone || "")}"
+                    placeholder="Phone"
+                    class="${inputClass}"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-1">
+              <div class="text-sm font-extrabold text-gray-700 mb-2">Trip details</div>
+              <div class="grid grid-cols-2 gap-2.5">
+                <div>
+                  ${fieldLabel("Start date", "bk-date")}
+                  <input
+                    id="bk-date"
+                    type="date"
+                    required
+                    class="${inputClass}"
+                  />
+                </div>
+                <div>
+                  ${fieldLabel("Travelers", "bk-travelers")}
+                  <input
+                    id="bk-travelers"
+                    type="number"
+                    min="1"
+                    max="8"
+                    value="${esc(travelersDefault)}"
+                    required
+                    oninput="updateBookingTotal(${p.id})"
+                    class="${inputClass}"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="text-sm font-extrabold text-gray-700 mb-2">Payment</div>
+              <div class="grid grid-cols-1 gap-2.5">
+                <div>
+                  ${fieldLabel("Cardholder name", "bk-card-name")}
+                  <input
+                    id="bk-card-name"
+                    type="text"
+                    required
+                    value="${esc(payment.cardHolderName || prof.name || "")}"
+                    placeholder="Cardholder name"
+                    class="${inputClass}"
+                  />
+                </div>
+                <div>
+                  ${fieldLabel("Card number", "bk-card-number")}
+                  <input
+                    id="bk-card-number"
+                    type="text"
+                    inputmode="numeric"
+                    required
+                    value="${esc(payment.cardNumber || "")}"
+                    placeholder="Card number"
+                    class="${inputClass}"
+                  />
+                </div>
+                <div class="grid grid-cols-2 gap-2.5">
+                  <div>
+                    ${fieldLabel("Expiry", "bk-card-expiry")}
+                    <input
+                      id="bk-card-expiry"
+                      type="text"
+                      required
+                      value="${esc(payment.cardExpiryDate || "")}"
+                      placeholder="MM/YYYY"
+                      class="${inputClass}"
+                    />
+                  </div>
+                  <div>
+                    ${fieldLabel("CVV", "bk-card-cvv")}
+                    <input
+                      id="bk-card-cvv"
+                      type="password"
+                      inputmode="numeric"
+                      required
+                      placeholder="CVV"
+                      class="${inputClass}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              ${fieldLabel("Optional notes", "bk-msg")}
+              <textarea
+                id="bk-msg"
+                rows="2"
+                class="${inputClass} resize-none"
+                placeholder="Optional notes"
+              ></textarea>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5 pt-1">
+              <button
+                type="button"
+                onclick="closeBookingOverlay()"
+                class="w-full bg-gray-100 text-gray-800 font-semibold py-3 px-4 rounded-2xl active:bg-gray-200 transition-colors"
+              >
+                Back
+              </button>
+              <button
+                type="submit"
+                class="w-full bg-primary text-white font-bold py-3 px-4 rounded-2xl active:bg-primaryDark transition-colors"
+              >
+                Book
+              </button>
+            </div>
+          </form>
+        `;
+        openBookingOverlay();
+        updateBookingTotal(id);
+      }
+
+      function updateBookingTotal(packageId) {
+        const p = packageById(packageId);
+        if (!p) return;
+        const travelers = Math.max(1, Number($("bk-travelers")?.value) || 1);
+        const total = (Number(p.priceHKD) || 0) * travelers;
+        const totalEl = $("booking-total");
+        const noteEl = $("booking-total-note");
+        if (totalEl) totalEl.textContent = fmtHKD(total);
+        if (noteEl) noteEl.textContent = `${travelers} traveler${travelers === 1 ? "" : "s"}`;
+      }
+
+      function submitTrip(e, packageId) {
+        e.preventDefault();
+        const p = packageById(packageId);
+        const travelerTitle = $("bk-traveler-title").value;
+        const name = $("bk-name").value;
+        const email = $("bk-email").value;
+        const phone = $("bk-phone").value;
+        const startDate = $("bk-date").value;
+        const travelers = Number($("bk-travelers").value) || 1;
+        const totalHKD = (Number(p?.priceHKD) || 0) * travelers;
+        const msg = $("bk-msg").value;
+        const cardName = $("bk-card-name").value;
+        const cardNumber = $("bk-card-number").value;
+        const cardExpiry = $("bk-card-expiry").value;
+        const cardDigits = String(cardNumber || "").replace(/\D/g, "");
+
+        const id = nextExpCode("TBK-");
+        const ts = nextExpTimestamp();
+        const trip = {
+          id,
+          packageId,
+          travelerTitle,
+          name,
+          email,
+          phone,
+          startDate,
+          travelers,
+          unitPriceHKD: Number(p?.priceHKD) || 0,
+          totalHKD,
+          msg,
+          payment: {
+            method: "Credit Card",
+            cardHolderName: cardName,
+            cardLast4: cardDigits.slice(-4),
+            cardExpiryDate: cardExpiry,
+            amountHKD: totalHKD,
+          },
+          status: "confirmed",
+          timestamp: ts,
+        };
+
+        state.app.trips = state.app.trips || [];
+        state.app.trips.unshift(trip);
+
+        // push a notification
+        state.app.notifications = state.app.notifications || [];
+        state.app.notifications.unshift({
+          id: nextNotificationId(),
+          title: "Trip booked",
+          desc: `Your itinerary for “${packageById(packageId)?.shortName || packageById(packageId)?.title || "this package"}” is confirmed.`,
+          time: "Just now",
+          unread: true,
+        });
+
+        renderNotifications();
+        location.hash = "#/trips";
+        closeBookingOverlay();
+      }
+
+      function toggleFavorite(id) {
+        const favs = state.app.favorites || (state.app.favorites = []);
+        const idx = favs.indexOf(id);
+        if (idx >= 0) favs.splice(idx, 1);
+        else favs.unshift(id);
+        renderSavedBadge();
+        render();
+      }
+
+      function openBookingOverlay() {
+        const overlay = $("booking-overlay");
+        const content = $("booking-content");
+        overlay.classList.remove("pointer-events-none", "opacity-0");
+        overlay.classList.add("opacity-100");
+        content.classList.remove("translate-y-full");
+      }
+
+      function closeBookingOverlay() {
+        const overlay = $("booking-overlay");
+        const content = $("booking-content");
+        overlay.classList.add("pointer-events-none", "opacity-0");
+        overlay.classList.remove("opacity-100");
+        content.classList.add("translate-y-full");
+      }
+
+      function onExploreInput(v) {
+        state.exploreQuery = v;
+        clearTimeout(state._exploreDebounce);
+        state._exploreDebounce = setTimeout(() => updateExploreResults(), 200);
+      }
+
+      function applyKeyword(k) {
+        state.exploreQuery = k;
+        state.exploreSearchFocused = true;
+        clearTimeout(state._exploreBlurTimer);
+        const el = $("explore-search");
+        if (el) el.value = k;
+        clearTimeout(state._exploreDebounce);
+        updateExploreHistory();
+        updateExploreResults();
+      }
+
+      function clearSearch() {
+        state.exploreQuery = "";
+        const el = $("explore-search");
+        if (el) el.value = "";
+        clearTimeout(state._exploreDebounce);
+        updateExploreResults();
+      }
+
+      function deleteSearchHistory(k) {
+        clearTimeout(state._exploreBlurTimer);
+        state.exploreSearchFocused = true;
+        state.app.search_history = (state.app.search_history || []).filter((x) => x !== k);
+        updateExploreHistory();
+      }
+
+      function focusSearch() {
+        location.hash = "#/explore";
+        state._focusSearchOnRender = false;
+        state.exploreSearchFocused = false;
+        render();
+      }
+
+      function renderNotifications() {
+        const panel = $("notifications-panel");
+        const list = $("notification-list");
+        const badge = $("notification-badge");
+        const items = state.app?.notifications || [];
+        const unread = items.filter((n) => n.unread).length;
+        badge.textContent = unread;
+        badge.style.display = unread ? "flex" : "none";
+
+        list.innerHTML = items
+          .slice(0, 12)
+          .map((n) => {
+            const dot = n.unread ? "bg-primary" : "bg-gray-300";
+            return `
+              <button class="w-full text-left p-4 border-b border-gray-50 hover:bg-gray-50/60 transition-colors" onclick="markRead(${esc(
+                n.id
+              )})">
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 rounded-full ${dot} mt-2"></div>
+                  <div class="min-w-0">
+                    <div class="text-sm font-bold text-gray-800">${esc(n.title)}</div>
+                    <div class="text-xs text-gray-500 mt-1 line-clamp-2">${esc(n.desc)}</div>
+                    <div class="text-[11px] text-gray-400 mt-2">${esc(n.time || "")}</div>
+                  </div>
+                </div>
+              </button>
+            `;
+          })
+          .join("");
+      }
+
+      function renderSavedBadge() {
+        const badge = $("saved-badge");
+        if (!badge) return;
+        const count = (state.app?.favorites || []).length;
+        badge.textContent = count > 9 ? "9+" : String(count);
+        badge.style.display = count ? "flex" : "none";
+      }
+
+      function toggleNotifications() {
+        const panel = $("notifications-panel");
+        const isOpen = !panel.classList.contains("hidden");
+        if (isOpen) panel.classList.add("hidden");
+        else panel.classList.remove("hidden");
+      }
+
+      function markRead(id) {
+        const n = (state.app.notifications || []).find((x) => x.id === id);
+        if (n) n.unread = false;
+        renderNotifications();
+      }
+
+      function markAllRead() {
+        for (const n of state.app.notifications || []) n.unread = false;
+        renderNotifications();
+      }
+
+      function closeNotificationsOnOutsideClick(e) {
+        const panel = $("notifications-panel");
+        const btn = e.target.closest("button");
+        const inPanel = e.target.closest("#notifications-panel");
+        if (inPanel) return;
+        // don't close if clicking the bell button (has onclick toggle)
+        if (btn && btn.querySelector(".ph-bell")) return;
+        panel.classList.add("hidden");
+      }
+
+      async function loadJSON(path) {
+        const res = await fetch(path, { cache: "no-store" });
+        if (!res.ok) throw new Error(`Failed to load ${path}`);
+        return await res.json();
+      }
+
+      async function loadJSONSafe(path, fallback) {
+        try {
+          return await loadJSON(path);
+        } catch (_) {
+          return fallback;
+        }
+      }
+
+      async function init() {
+        try {
+          const requestedUserId = getRequestedUserIdFromUrl();
+          const strictUser = getBooleanQueryParam("strictUser", true);
+          const [db, registry] = await Promise.all([
+            loadJSON("./database.json"),
+            loadJSONSafe("../../users/users_registry.v1.json", {
+              version: "fallback",
+              users: [{ userId: "u_001", status: "active", enabledApps: ["travel"] }],
+            }),
+          ]);
+          const userId = resolveUserIdForApp(requestedUserId, registry, "travel", strictUser);
+          const [app, profile] = await Promise.all([
+            loadJSON(`../../users/${userId}/app_travel.json`),
+            loadJSON(`../../users/${userId}/user_profile.json`),
+          ]);
+          state.db = db;
+          state.app = app;
+          state.profile = profile;
+
+          // Personalization: `scoreForUser()` ranks packages using `state.app.travelPreferences`.
+          // Our per-user preferences live in `user_profile.json` under `perApp.travel`.
+          if (!state.app.travelPreferences && state.profile?.perApp?.travel) {
+            state.app.travelPreferences = state.profile.perApp.travel;
+          }
+
+          state.route = parseHash().tab || "home";
+          window.addEventListener("hashchange", () => render());
+          document.addEventListener("click", closeNotificationsOnOutsideClick);
+          $("booking-overlay")?.addEventListener("click", (e) => {
+            if (e.target.id === "booking-overlay") closeBookingOverlay();
+          });
+          $("trip-cancel-overlay")?.addEventListener("click", (e) => {
+            if (e.target.id === "trip-cancel-overlay") closeTripCancelConfirm();
+          });
+
+          renderNotifications();
+          renderSavedBadge();
+          render();
+        } catch (e) {
+          const main = $("main-content");
+          main.innerHTML = `
+            <div class="p-6">
+              <div class="bg-white rounded-2xl border border-red-100 p-5">
+                <div class="flex items-start gap-3">
+                  <div class="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center text-red-600">
+                    <i class="ph ph-warning text-xl"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-gray-800">Failed to load travel data</div>
+                    <div class="text-sm text-gray-600 mt-1">${esc(e?.message || e)}</div>
+                    <div class="text-xs text-gray-500 mt-3">
+                      Make sure the JSON files exist and are served from the same origin.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          console.error(e);
+        }
+      }
+
+      init();
+    </script>
+  </body>
+</html>

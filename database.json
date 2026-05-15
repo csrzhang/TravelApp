@@ -1,0 +1,2103 @@
+{
+  "packages": [
+    {
+      "id": 1,
+      "title": "Zurich + Lucerne Lakeside Escape",
+      "tagline": "Calm alpine views, lakeside strolls, and effortless city comfort.",
+      "region": "Europe",
+      "country": "Switzerland",
+      "city": "Zurich",
+      "durationDays": 6,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "hotel": {
+        "name": "Central 4★ Boutique Hotel",
+        "starRating": 4,
+        "style": [
+          "quiet",
+          "comfortable",
+          "central"
+        ],
+        "fromHKDPerNight": 1530
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Rail Day Pass"
+      ],
+      "themes": [
+        "relaxed",
+        "scenic",
+        "city and lake"
+      ],
+      "highlights": [
+        "Lake Lucerne day trip with golden-hour views",
+        "Optional Mount Rigi panoramic ride",
+        "Walkable old town + coffee spots"
+      ],
+      "img": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.7,
+      "desc": "A 6-day comfort-first itinerary combining Zurich's ease with Lucerne's lakeside charm. Designed for a slow, enjoyable pace with plenty of scenic downtime.",
+      "priceHKD": 20230,
+      "maxStops": 1,
+      "destinations": [
+        "Zurich",
+        "Lucerne"
+      ],
+      "reviewCount": 120,
+      "priceBreakdownHKD": {
+        "flights": 10115,
+        "hotel": 7650,
+        "activitiesAndTransfers": 2465
+      },
+      "shortName": "Zurich Lakeside"
+    },
+    {
+      "id": 2,
+      "title": "Lake Como Slow Luxury (Milan + Bellagio)",
+      "tagline": "Lakeside calm, beautiful towns, and elegant comfort.",
+      "region": "Europe",
+      "country": "Italy",
+      "city": "Como",
+      "durationDays": 7,
+      "departureAirport": "HKG",
+      "cabinClass": "Business",
+      "hotel": {
+        "name": "Lakefront 5★ Retreat",
+        "starRating": 5,
+        "style": [
+          "lake view",
+          "spa",
+          "quiet"
+        ],
+        "fromHKDPerNight": 2720
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Private Boat Transfer"
+      ],
+      "themes": [
+        "relaxed",
+        "scenic",
+        "romantic"
+      ],
+      "highlights": [
+        "Bellagio + Varenna village-hopping",
+        "Private boat hour at sunset",
+        "Flexible free day for spa or shopping"
+      ],
+      "img": "https://picsum.photos/seed/lake-como/900/600",
+      "rating": 4.8,
+      "desc": "A 7-day premium escape built around quiet comfort and postcard views. Ideal for travelers who value great hotels, slow mornings, and gentle days.",
+      "priceHKD": 29660,
+      "maxStops": 1,
+      "destinations": [
+        "Milan",
+        "Lake Como",
+        "Bellagio"
+      ],
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 13340,
+        "hotel": 16320,
+        "activitiesAndTransfers": 0
+      },
+      "shortName": "Lake Como"
+    },
+    {
+      "id": 3,
+      "title": "Provence Lavender & Hilltop Villages",
+      "tagline": "Sunlit landscapes, relaxed markets, and scenic drives.",
+      "region": "Europe",
+      "country": "France",
+      "city": "Avignon",
+      "durationDays": 6,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "hotel": {
+        "name": "Charming 4★ Courtyard Hotel",
+        "starRating": 4,
+        "style": [
+          "quiet",
+          "boutique",
+          "local charm"
+        ],
+        "fromHKDPerNight": 1360
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Small-Group Day Tour"
+      ],
+      "themes": [
+        "relaxed",
+        "scenic",
+        "countryside"
+      ],
+      "highlights": [
+        "Gordes + Roussillon day trip",
+        "Market morning + picnic-style lunch",
+        "Golden light photography stops"
+      ],
+      "img": "https://images.unsplash.com/photo-1508020963102-c6c723be5764?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.6,
+      "desc": "A 6-day scenic getaway focused on gentle pacing, countryside beauty, and comfort-forward stays.",
+      "priceHKD": 18620,
+      "maxStops": 1,
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 9310,
+        "hotel": 6800,
+        "activitiesAndTransfers": 2510
+      },
+      "shortName": "Provence Villages",
+      "destinations": [
+        "Avignon",
+        "Gordes",
+        "Roussillon"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Vienna Classical Comfort Week",
+      "tagline": "Grand cafés, culture, and elegant evenings.",
+      "region": "Europe",
+      "country": "Austria",
+      "city": "Vienna",
+      "durationDays": 5,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "hotel": {
+        "name": "Central 4★ Design Hotel",
+        "starRating": 4,
+        "style": [
+          "central",
+          "comfortable",
+          "quiet"
+        ],
+        "fromHKDPerNight": 1280
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Museum Pass"
+      ],
+      "themes": [
+        "relaxed",
+        "city break",
+        "culture"
+      ],
+      "highlights": [
+        "Schönbrunn Palace + gardens",
+        "Evening concert (optional upgrade)",
+        "Slow café-hopping route"
+      ],
+      "img": "https://images.unsplash.com/photo-1516553174826-d05833723cd4?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.5,
+      "desc": "A polished 5-day city escape built around comfort, walkability, and a calm itinerary that leaves space for spontaneous moments.",
+      "priceHKD": 16060,
+      "maxStops": 1,
+      "reviewCount": 400,
+      "priceBreakdownHKD": {
+        "flights": 8030,
+        "hotel": 5120,
+        "activitiesAndTransfers": 2910
+      },
+      "shortName": "Vienna Classics",
+      "destinations": [
+        "Vienna"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Lisbon + Sintra Breeze",
+      "tagline": "Ocean air, tiled streets, and a dreamy day in Sintra.",
+      "region": "Europe",
+      "country": "Portugal",
+      "city": "Lisbon",
+      "durationDays": 6,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "hotel": {
+        "name": "Riverside 4★ Stay",
+        "starRating": 4,
+        "style": [
+          "ocean breeze",
+          "walkable",
+          "comfortable"
+        ],
+        "fromHKDPerNight": 1190
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Sintra Day Trip"
+      ],
+      "themes": [
+        "relaxed",
+        "scenic",
+        "foodie"
+      ],
+      "highlights": [
+        "Tram viewpoints without rushing",
+        "Sintra palaces + easy-paced tour",
+        "Pastéis tasting list"
+      ],
+      "img": "https://picsum.photos/seed/lisbon/900/600",
+      "rating": 4.6,
+      "desc": "A calm 6-day Lisbon itinerary with a comfortable hotel and curated scenic stops, designed for travelers who prefer enjoyment over checklists.",
+      "priceHKD": 17340,
+      "maxStops": 1,
+      "reviewCount": 400,
+      "priceBreakdownHKD": {
+        "flights": 8670,
+        "hotel": 5950,
+        "activitiesAndTransfers": 2720
+      },
+      "shortName": "Lisbon Sintra",
+      "destinations": [
+        "Lisbon",
+        "Sintra"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Reykjavik Northern Calm (Blue Lagoon + Coast)",
+      "tagline": "Spa warmth, dramatic coastlines, and cozy evenings.",
+      "region": "Europe",
+      "country": "Iceland",
+      "city": "Reykjavik",
+      "durationDays": 6,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "hotel": {
+        "name": "Central 4★ Cozy Hotel",
+        "starRating": 4,
+        "style": [
+          "cozy",
+          "quiet",
+          "central"
+        ],
+        "fromHKDPerNight": 1780
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Blue Lagoon Entry"
+      ],
+      "themes": [
+        "relaxed",
+        "scenic",
+        "nature"
+      ],
+      "highlights": [
+        "Blue Lagoon comfort slot",
+        "South Coast waterfalls day tour",
+        "Flexible free day for cafés or museums"
+      ],
+      "img": "https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.7,
+      "desc": "A comfort-first Iceland plan with curated nature highlights, warm spa time, and a gentle pace.",
+      "priceHKD": 22860,
+      "maxStops": 1,
+      "reviewCount": 120,
+      "priceBreakdownHKD": {
+        "flights": 11430,
+        "hotel": 8900,
+        "activitiesAndTransfers": 2530
+      },
+      "shortName": "Reykjavik Calm",
+      "destinations": [
+        "Reykjavik",
+        "Blue Lagoon",
+        "South Coast"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Santorini Sunset Serenity",
+      "tagline": "Whitewashed views, slow mornings, and golden-hour bliss.",
+      "region": "Europe",
+      "country": "Greece",
+      "city": "Santorini",
+      "durationDays": 7,
+      "departureAirport": "HKG",
+      "cabinClass": "Business",
+      "hotel": {
+        "name": "Caldera 5★ Suite Stay",
+        "starRating": 5,
+        "style": [
+          "sea view",
+          "quiet",
+          "romantic"
+        ],
+        "fromHKDPerNight": 2980
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Sunset Cruise"
+      ],
+      "themes": [
+        "relaxed",
+        "scenic",
+        "romantic"
+      ],
+      "highlights": [
+        "Oia sunset cruise with dinner",
+        "Easy-paced island tour (optional)",
+        "Free day for spa or beach club"
+      ],
+      "img": "https://images.unsplash.com/photo-1504512485720-7d83a16ee930?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.8,
+      "desc": "A slow, indulgent 7-day Santorini escape built for maximum comfort and minimal stress.",
+      "priceHKD": 27960,
+      "maxStops": 1,
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 10080,
+        "hotel": 17880,
+        "activitiesAndTransfers": 0
+      },
+      "shortName": "Santorini Sunset",
+      "destinations": [
+        "Santorini"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Barcelona Slow City + Seaside",
+      "tagline": "Gaudí icons, beach walks, and relaxed tapas nights.",
+      "region": "Europe",
+      "country": "Spain",
+      "city": "Barcelona",
+      "durationDays": 5,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "hotel": {
+        "name": "Eixample 4★ Comfort Hotel",
+        "starRating": 4,
+        "style": [
+          "walkable",
+          "comfortable",
+          "quiet rooms"
+        ],
+        "fromHKDPerNight": 1280
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Sagrada Família Tickets"
+      ],
+      "themes": [
+        "relaxed",
+        "city break",
+        "foodie"
+      ],
+      "highlights": [
+        "Timed-entry Gaudí highlights",
+        "Sunset beach walk route",
+        "Tapas list with calm neighborhoods"
+      ],
+      "img": "https://images.unsplash.com/photo-1464790719320-516ecd75af6c?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.5,
+      "desc": "A 5-day city break designed to avoid fatigue: pre-booked key sights, comfortable accommodation, and plenty of downtime.",
+      "priceHKD": 16320,
+      "maxStops": 1,
+      "reviewCount": 400,
+      "priceBreakdownHKD": {
+        "flights": 8160,
+        "hotel": 5120,
+        "activitiesAndTransfers": 3040
+      },
+      "shortName": "Barcelona Seaside",
+      "destinations": [
+        "Barcelona"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Kyoto + Osaka Budget Culture Break",
+      "tagline": "Easy transit, street food, and classic sights on a smart budget.",
+      "region": "Asia",
+      "country": "Japan",
+      "city": "Kyoto",
+      "durationDays": 4,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "hotel": {
+        "name": "Clean 3★ Station Hotel",
+        "starRating": 3,
+        "style": [
+          "clean",
+          "near transit",
+          "practical"
+        ],
+        "fromHKDPerNight": 640
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Transit Card"
+      ],
+      "themes": [
+        "budget",
+        "practical",
+        "culture"
+      ],
+      "highlights": [
+        "Station-area convenience",
+        "Optional day in Osaka for food",
+        "Flexible self-guided routes"
+      ],
+      "img": "https://images.unsplash.com/photo-1758651794755-801ab0d3c308?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.4,
+      "desc": "A practical 4-day plan centered on transit convenience and good value—ideal for a solo traveler who wants solid basics done right.",
+      "priceHKD": 6970,
+      "maxStops": 1,
+      "destinations": [
+        "Kyoto",
+        "Osaka"
+      ],
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 3136,
+        "hotel": 1920,
+        "activitiesAndTransfers": 1914
+      },
+      "shortName": "Kyoto Osaka"
+    },
+    {
+      "id": 10,
+      "title": "Taipei Night Markets + Hot Springs",
+      "tagline": "Food, easy metro hops, and a relaxing Beitou soak.",
+      "region": "Asia",
+      "country": "Taiwan",
+      "city": "Taipei",
+      "durationDays": 3,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "hotel": {
+        "name": "3★ Metro Access Hotel",
+        "starRating": 3,
+        "style": [
+          "clean",
+          "metro access",
+          "good value"
+        ],
+        "fromHKDPerNight": 470
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Airport Transfer"
+      ],
+      "themes": [
+        "budget",
+        "foodie",
+        "practical"
+      ],
+      "highlights": [
+        "Night market route list",
+        "Beitou hot spring half-day",
+        "Easy metro-based itinerary"
+      ],
+      "img": "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.3,
+      "desc": "A short, affordable 3-day Taipei plan that's simple to execute and packed with comfort food and a touch of relaxation.",
+      "priceHKD": 3570,
+      "maxStops": 1,
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 1606,
+        "hotel": 940,
+        "activitiesAndTransfers": 1024
+      },
+      "shortName": "Taipei Springs",
+      "destinations": [
+        "Taipei",
+        "Beitou"
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Seoul Value City Break",
+      "tagline": "Convenient neighborhoods, great eats, and easy day routes.",
+      "region": "Asia",
+      "country": "South Korea",
+      "city": "Seoul",
+      "durationDays": 4,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "hotel": {
+        "name": "3★ Central Value Hotel",
+        "starRating": 3,
+        "style": [
+          "clean",
+          "central",
+          "near transit"
+        ],
+        "fromHKDPerNight": 600
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Transit Pass"
+      ],
+      "themes": [
+        "budget",
+        "city break",
+        "practical"
+      ],
+      "highlights": [
+        "Transit-optimized itinerary",
+        "Street food + market stops",
+        "Optional day trip add-on"
+      ],
+      "img": "https://picsum.photos/seed/seoul/900/600",
+      "rating": 4.2,
+      "desc": "A high-value Seoul package focused on practical planning and comfort basics—no-frills, no stress.",
+      "priceHKD": 5860,
+      "maxStops": 1,
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 2637,
+        "hotel": 1800,
+        "activitiesAndTransfers": 1423
+      },
+      "shortName": "Seoul City Break",
+      "destinations": [
+        "Seoul"
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Bangkok Smart Budget + Riverside",
+      "tagline": "Comfort basics, great food, and easy transit access.",
+      "region": "Asia",
+      "country": "Thailand",
+      "city": "Bangkok",
+      "durationDays": 4,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "hotel": {
+        "name": "3★ Riverside Value Hotel",
+        "starRating": 3,
+        "style": [
+          "good value",
+          "near transit",
+          "practical"
+        ],
+        "fromHKDPerNight": 380
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Airport Transfer"
+      ],
+      "themes": [
+        "budget",
+        "foodie",
+        "practical"
+      ],
+      "highlights": [
+        "Easy river ferry route",
+        "Street food neighborhoods list",
+        "Flexible pacing for heat"
+      ],
+      "img": "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.1,
+      "desc": "A simple Bangkok plan designed for value and convenience, with a comfortable base near transit.",
+      "priceHKD": 4420,
+      "maxStops": 1,
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 1989,
+        "hotel": 1140,
+        "activitiesAndTransfers": 1291
+      },
+      "shortName": "Bangkok Riverside",
+      "destinations": [
+        "Bangkok"
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Hanoi Old Quarter Value Trip",
+      "tagline": "Walkable streets, local food, and a calm itinerary.",
+      "region": "Asia",
+      "country": "Vietnam",
+      "city": "Hanoi",
+      "durationDays": 4,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "hotel": {
+        "name": "3★ Old Quarter Hotel",
+        "starRating": 3,
+        "style": [
+          "walkable",
+          "clean",
+          "good value"
+        ],
+        "fromHKDPerNight": 340
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Airport Transfer"
+      ],
+      "themes": [
+        "budget",
+        "culture",
+        "practical"
+      ],
+      "highlights": [
+        "Food street route list",
+        "Lake walk + café map",
+        "Optional day tour add-on"
+      ],
+      "img": "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.2,
+      "desc": "A good-value Hanoi plan focused on walkability and low-friction logistics for a solo traveler.",
+      "priceHKD": 4080,
+      "maxStops": 1,
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 1836,
+        "hotel": 1020,
+        "activitiesAndTransfers": 1224
+      },
+      "shortName": "Hanoi Old Quarter",
+      "destinations": [
+        "Hanoi"
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Da Nang Beach Reset (Budget-Friendly)",
+      "tagline": "Simple beach downtime with practical stays and easy meals.",
+      "region": "Asia",
+      "country": "Vietnam",
+      "city": "Da Nang",
+      "durationDays": 5,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "hotel": {
+        "name": "3★ Beachside Value Stay",
+        "starRating": 3,
+        "style": [
+          "beach access",
+          "clean",
+          "good value"
+        ],
+        "fromHKDPerNight": 380
+      },
+      "includes": [
+        "Flights",
+        "Hotel"
+      ],
+      "themes": [
+        "budget",
+        "relaxed",
+        "beach"
+      ],
+      "highlights": [
+        "Beach downtime without overscheduling",
+        "Optional Hoi An evening add-on",
+        "Simple, flexible itinerary"
+      ],
+      "img": "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.3,
+      "desc": "A relaxed, budget-friendly 5-day beach reset with a straightforward plan and comfortable essentials.",
+      "priceHKD": 5180,
+      "maxStops": 1,
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 2331,
+        "hotel": 1520,
+        "activitiesAndTransfers": 1329
+      },
+      "shortName": "Da Nang Beach",
+      "destinations": [
+        "Da Nang"
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Kuala Lumpur Stopover Saver",
+      "tagline": "Short, affordable city break with easy transit.",
+      "region": "Asia",
+      "country": "Malaysia",
+      "city": "Kuala Lumpur",
+      "durationDays": 3,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "hotel": {
+        "name": "3★ Central Budget Hotel",
+        "starRating": 3,
+        "style": [
+          "near transit",
+          "clean",
+          "practical"
+        ],
+        "fromHKDPerNight": 340
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Airport Transfer"
+      ],
+      "themes": [
+        "budget",
+        "city break",
+        "practical"
+      ],
+      "highlights": [
+        "Transit-friendly base",
+        "Food court + hawker list",
+        "Optional Batu Caves half-day"
+      ],
+      "img": "https://picsum.photos/seed/kuala-lumpur/900/600",
+      "rating": 4,
+      "desc": "A compact 3-day saver package that keeps costs low while staying convenient.",
+      "priceHKD": 3320,
+      "maxStops": 1,
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 1494,
+        "hotel": 680,
+        "activitiesAndTransfers": 1146
+      },
+      "shortName": "KL Stopover",
+      "destinations": [
+        "Kuala Lumpur"
+      ]
+    },
+    {
+      "id": 16,
+      "title": "Osaka Value Eats + Easy Day Trips",
+      "tagline": "Street food, simple logistics, and flexible days.",
+      "region": "Asia",
+      "country": "Japan",
+      "city": "Osaka",
+      "durationDays": 5,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "hotel": {
+        "name": "3★ Namba Area Hotel",
+        "starRating": 3,
+        "style": [
+          "near transit",
+          "clean",
+          "walkable"
+        ],
+        "fromHKDPerNight": 720
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Transit Card"
+      ],
+      "themes": [
+        "budget",
+        "foodie",
+        "practical"
+      ],
+      "highlights": [
+        "Dotonbori night route list",
+        "Easy day trip options (Kyoto/Nara)",
+        "Station-area convenience"
+      ],
+      "img": "https://images.unsplash.com/photo-1759746334715-fae30ec56600?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.4,
+      "desc": "A 5-day Osaka plan centered on convenience and good value, perfect for a solo traveler who wants great food and simple transit.",
+      "priceHKD": 7560,
+      "maxStops": 1,
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 3402,
+        "hotel": 2880,
+        "activitiesAndTransfers": 1278
+      },
+      "shortName": "Osaka Eats",
+      "destinations": [
+        "Osaka",
+        "Nara"
+      ]
+    },
+    {
+      "id": 17,
+      "title": "Stockholm Archipelago Calm",
+      "tagline": "Clean design, quiet waters, and a comfortable pace.",
+      "region": "Europe",
+      "country": "Sweden",
+      "city": "Stockholm",
+      "durationDays": 6,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "hotel": {
+        "name": "Central 4★ Nordic Design Hotel",
+        "starRating": 4,
+        "style": [
+          "quiet",
+          "design",
+          "walkable"
+        ],
+        "fromHKDPerNight": 1620
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Archipelago Ferry Pass"
+      ],
+      "themes": [
+        "relaxed",
+        "scenic",
+        "city and water"
+      ],
+      "highlights": [
+        "Archipelago day with easy ferry hops",
+        "Old town slow walk + cafés",
+        "Flexible free evening for design districts"
+      ],
+      "img": "https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.6,
+      "desc": "A calm 6-day Stockholm itinerary combining city ease with archipelago serenity—built for travelers who love scenic, unhurried days.",
+      "priceHKD": 21420,
+      "maxStops": 1,
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 10710,
+        "hotel": 8100,
+        "activitiesAndTransfers": 2610
+      },
+      "shortName": "Stockholm Archipelago",
+      "destinations": [
+        "Stockholm",
+        "Archipelago"
+      ]
+    },
+    {
+      "id": 18,
+      "title": "Paris Quiet Corners (Comfort Edition)",
+      "tagline": "Curated sights with time to breathe—and a great hotel base.",
+      "region": "Europe",
+      "country": "France",
+      "city": "Paris",
+      "durationDays": 6,
+      "departureAirport": "HKG",
+      "cabinClass": "Business",
+      "hotel": {
+        "name": "Left Bank 5★ Comfort Stay",
+        "starRating": 5,
+        "style": [
+          "quiet rooms",
+          "central",
+          "luxury"
+        ],
+        "fromHKDPerNight": 2890
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Airport Transfers"
+      ],
+      "themes": [
+        "relaxed",
+        "city break",
+        "culture"
+      ],
+      "highlights": [
+        "Timed-entry essentials without rushing",
+        "Seine evening stroll route",
+        "Flexible free day for shopping or spa"
+      ],
+      "img": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.8,
+      "desc": "A comfort-first Paris plan designed to minimize fatigue, maximize enjoyment, and keep you based in an excellent, quiet hotel.",
+      "priceHKD": 30520,
+      "maxStops": 1,
+      "reviewCount": 340,
+      "priceBreakdownHKD": {
+        "flights": 16070,
+        "hotel": 14450,
+        "activitiesAndTransfers": 0
+      },
+      "shortName": "Paris Quiet Corners",
+      "destinations": [
+        "Paris"
+      ]
+    },
+    {
+      "id": 19,
+      "title": "Seville Sunny Slow Days",
+      "tagline": "Warm light, beautiful plazas, and relaxed walking routes.",
+      "region": "Europe",
+      "country": "Spain",
+      "city": "Seville",
+      "durationDays": 6,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "hotel": {
+        "name": "Old Town 4★ Courtyard Hotel",
+        "starRating": 4,
+        "style": [
+          "quiet",
+          "local charm",
+          "walkable"
+        ],
+        "fromHKDPerNight": 1230
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast"
+      ],
+      "themes": [
+        "relaxed",
+        "scenic",
+        "foodie"
+      ],
+      "highlights": [
+        "Slow plaza route + tapas spots",
+        "Optional day trip add-on",
+        "Comfortable midday rest windows"
+      ],
+      "img": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.5,
+      "desc": "A 6-day Seville escape focused on atmosphere, calm walking routes, and an easy, enjoyable rhythm.",
+      "priceHKD": 17850,
+      "maxStops": 1,
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 8925,
+        "hotel": 6150,
+        "activitiesAndTransfers": 2775
+      },
+      "shortName": "Seville Slow Days",
+      "destinations": [
+        "Seville"
+      ]
+    },
+    {
+      "id": 20,
+      "title": "Singapore Quick & Clean (Value Base)",
+      "tagline": "Efficient transit, clean stays, and easy sightseeing.",
+      "region": "Asia",
+      "country": "Singapore",
+      "city": "Singapore",
+      "durationDays": 3,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "hotel": {
+        "name": "3★ Downtown Value Hotel",
+        "starRating": 3,
+        "style": [
+          "clean",
+          "near transit",
+          "practical"
+        ],
+        "fromHKDPerNight": 810
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Transit Card"
+      ],
+      "themes": [
+        "budget",
+        "city break",
+        "practical"
+      ],
+      "highlights": [
+        "Transit-first neighborhood picks",
+        "Gardens by the Bay evening slot",
+        "Hawker center shortlist"
+      ],
+      "img": "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=900&q=80",
+      "rating": 4.3,
+      "desc": "A short Singapore plan that keeps things simple: clean hotel, great transit access, and a compact set of highlights.",
+      "priceHKD": 5520,
+      "maxStops": 1,
+      "reviewCount": 180,
+      "priceBreakdownHKD": {
+        "flights": 2484,
+        "hotel": 1620,
+        "activitiesAndTransfers": 1416
+      },
+      "shortName": "Singapore Quick Trip",
+      "destinations": [
+        "Singapore"
+      ]
+    },
+    {
+      "id": 21,
+      "title": "Cape Town + Garden Route Scenic Week",
+      "shortName": "Cape Town Coast",
+      "tagline": "Table Mountain views, coastal drives, and easy wine-country time.",
+      "region": "Africa",
+      "country": "South Africa",
+      "city": "Cape Town",
+      "durationDays": 8,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Waterfront 4★ Harbour Hotel",
+        "starRating": 4,
+        "style": [
+          "harbour_view",
+          "central",
+          "scenic"
+        ],
+        "fromHKDPerNight": 1180
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Garden Route Day Tour"
+      ],
+      "themes": [
+        "scenic",
+        "coastal",
+        "wine"
+      ],
+      "highlights": [
+        "Table Mountain cableway window",
+        "Cape Peninsula coastal drive",
+        "Stellenbosch wine-country afternoon"
+      ],
+      "img": "https://picsum.photos/seed/cape-town-table-mountain-coast/900/600",
+      "rating": 4.7,
+      "desc": "An 8-day scenic South Africa package balancing Cape Town comfort, coastal viewpoints, and a relaxed Garden Route taste.",
+      "priceHKD": 21480,
+      "destinations": [
+        "Cape Town",
+        "Garden Route"
+      ],
+      "reviewCount": 146,
+      "priceBreakdownHKD": {
+        "flights": 9783,
+        "hotel": 8260,
+        "activitiesAndTransfers": 3437
+      }
+    },
+    {
+      "id": 22,
+      "title": "Marrakech Medina + Atlas Foothills",
+      "shortName": "Marrakech Atlas",
+      "tagline": "Markets, courtyards, desert colors, and mountain air.",
+      "region": "Africa",
+      "country": "Morocco",
+      "city": "Marrakech",
+      "durationDays": 6,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Medina 4★ Riad Stay",
+        "starRating": 4,
+        "style": [
+          "riad",
+          "local_charm",
+          "central"
+        ],
+        "fromHKDPerNight": 920
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Atlas Day Trip"
+      ],
+      "themes": [
+        "culture",
+        "markets",
+        "scenic"
+      ],
+      "highlights": [
+        "Guided medina walk",
+        "Atlas foothills day trip",
+        "Rooftop sunset dinner option"
+      ],
+      "img": "https://picsum.photos/seed/marrakech-atlas-morocco-medina/900/600",
+      "rating": 4.5,
+      "desc": "A compact 6-day Morocco escape with characterful lodging and easy cultural pacing.",
+      "priceHKD": 14560,
+      "destinations": [
+        "Marrakech",
+        "Atlas Mountains"
+      ],
+      "reviewCount": 132,
+      "priceBreakdownHKD": {
+        "flights": 7630,
+        "hotel": 4600,
+        "activitiesAndTransfers": 2330
+      }
+    },
+    {
+      "id": 23,
+      "title": "Kenya Safari Comfort (Nairobi + Maasai Mara)",
+      "shortName": "Kenya Safari",
+      "tagline": "Wildlife drives, open skies, and a comfortable safari base.",
+      "region": "Africa",
+      "country": "Kenya",
+      "city": "Nairobi",
+      "durationDays": 7,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Safari 4★ Lodge & City Hotel",
+        "starRating": 4,
+        "style": [
+          "safari_lodge",
+          "nature",
+          "comfortable"
+        ],
+        "fromHKDPerNight": 1650
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Safari Drives"
+      ],
+      "themes": [
+        "wildlife",
+        "scenic",
+        "nature"
+      ],
+      "highlights": [
+        "Maasai Mara game drive window",
+        "Comfort lodge stay",
+        "Nairobi arrival buffer day"
+      ],
+      "img": "https://picsum.photos/seed/kenya-safari-maasai-mara/900/600",
+      "rating": 4.8,
+      "desc": "A comfort-first safari itinerary with time for wildlife viewing and manageable transfers.",
+      "priceHKD": 26880,
+      "destinations": [
+        "Nairobi",
+        "Maasai Mara"
+      ],
+      "reviewCount": 168,
+      "priceBreakdownHKD": {
+        "flights": 12679,
+        "hotel": 9900,
+        "activitiesAndTransfers": 4301
+      }
+    },
+    {
+      "id": 24,
+      "title": "Cairo Pyramids + Nile Heritage Break",
+      "shortName": "Cairo Nile",
+      "tagline": "Ancient sights, river views, and practical city comfort.",
+      "region": "Africa",
+      "country": "Egypt",
+      "city": "Cairo",
+      "durationDays": 6,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Nile View 4★ Hotel",
+        "starRating": 4,
+        "style": [
+          "river_view",
+          "central",
+          "classic"
+        ],
+        "fromHKDPerNight": 980
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Pyramids Tour"
+      ],
+      "themes": [
+        "culture",
+        "history",
+        "city_break"
+      ],
+      "highlights": [
+        "Giza Pyramids guided visit",
+        "Egyptian Museum morning",
+        "Nile dinner cruise option"
+      ],
+      "img": "https://picsum.photos/seed/cairo-pyramids-nile/900/600",
+      "rating": 4.6,
+      "desc": "A 6-day Egypt starter itinerary covering landmark sights with hotel comfort and guided logistics.",
+      "priceHKD": 15890,
+      "destinations": [
+        "Cairo",
+        "Giza"
+      ],
+      "reviewCount": 154,
+      "priceBreakdownHKD": {
+        "flights": 8448,
+        "hotel": 4900,
+        "activitiesAndTransfers": 2542
+      }
+    },
+    {
+      "id": 25,
+      "title": "Namibia Desert Dunes + Windhoek Calm",
+      "shortName": "Namibia Dunes",
+      "tagline": "Desert color, wide horizons, and slow scenic days.",
+      "region": "Africa",
+      "country": "Namibia",
+      "city": "Windhoek",
+      "durationDays": 8,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "maxStops": 2,
+      "hotel": {
+        "name": "Desert 4★ Lodge Circuit",
+        "starRating": 4,
+        "style": [
+          "desert_lodge",
+          "quiet",
+          "scenic"
+        ],
+        "fromHKDPerNight": 1420
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Desert Transfers"
+      ],
+      "themes": [
+        "desert",
+        "scenic",
+        "photography"
+      ],
+      "highlights": [
+        "Sossusvlei dune sunrise",
+        "Low-light stargazing window",
+        "Windhoek recovery night"
+      ],
+      "img": "https://picsum.photos/seed/namibia-sossusvlei-dunes/900/600",
+      "rating": 4.7,
+      "desc": "An 8-day scenic Namibia plan built around desert landscapes, quieter stays, and realistic travel pacing.",
+      "priceHKD": 24620,
+      "destinations": [
+        "Windhoek",
+        "Sossusvlei"
+      ],
+      "reviewCount": 118,
+      "priceBreakdownHKD": {
+        "flights": 10741,
+        "hotel": 9940,
+        "activitiesAndTransfers": 3939
+      }
+    },
+    {
+      "id": 26,
+      "title": "Vancouver + Canadian Rockies Soft Adventure",
+      "shortName": "Vancouver Rockies",
+      "tagline": "Harbour walks, mountain lakes, and comfortable road scenery.",
+      "region": "North America",
+      "country": "Canada",
+      "city": "Vancouver",
+      "durationDays": 7,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Downtown 4★ City Hotel",
+        "starRating": 4,
+        "style": [
+          "central",
+          "clean",
+          "mountain_access"
+        ],
+        "fromHKDPerNight": 1600
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Rockies Day Tour"
+      ],
+      "themes": [
+        "nature",
+        "city_and_mountain",
+        "scenic"
+      ],
+      "highlights": [
+        "Stanley Park seawall time",
+        "Capilano or mountain viewpoint",
+        "Rockies lake-view extension option"
+      ],
+      "img": "https://picsum.photos/seed/vancouver-rockies-harbour/900/600",
+      "rating": 4.7,
+      "desc": "A 7-day Canada package blending Vancouver ease with mountain scenery and low-friction logistics.",
+      "priceHKD": 23580,
+      "destinations": [
+        "Vancouver",
+        "Rockies"
+      ],
+      "reviewCount": 190,
+      "priceBreakdownHKD": {
+        "flights": 10679,
+        "hotel": 9600,
+        "activitiesAndTransfers": 3301
+      }
+    },
+    {
+      "id": 27,
+      "title": "New York Comfort City Week",
+      "shortName": "New York Week",
+      "tagline": "Classic sights, walkable neighborhoods, and a central hotel base.",
+      "region": "North America",
+      "country": "United States",
+      "city": "New York",
+      "durationDays": 6,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Midtown 4★ Hotel",
+        "starRating": 4,
+        "style": [
+          "central",
+          "city_view",
+          "walkable"
+        ],
+        "fromHKDPerNight": 1850
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "City Pass"
+      ],
+      "themes": [
+        "city_break",
+        "culture",
+        "shopping"
+      ],
+      "highlights": [
+        "Central Park and museum day",
+        "Lower Manhattan route",
+        "Broadway evening option"
+      ],
+      "img": "https://picsum.photos/seed/new-york-skyline-week/900/600",
+      "rating": 4.6,
+      "desc": "A comfortable 6-day New York plan with central lodging and manageable daily routes.",
+      "priceHKD": 24860,
+      "destinations": [
+        "New York"
+      ],
+      "reviewCount": 240,
+      "priceBreakdownHKD": {
+        "flights": 12130,
+        "hotel": 9250,
+        "activitiesAndTransfers": 3480
+      }
+    },
+    {
+      "id": 28,
+      "title": "Banff Lakes Premium Nature Escape",
+      "shortName": "Banff Lakes",
+      "tagline": "Turquoise lakes, mountain air, and premium lodge comfort.",
+      "region": "North America",
+      "country": "Canada",
+      "city": "Banff",
+      "durationDays": 7,
+      "departureAirport": "HKG",
+      "cabinClass": "Business",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Mountain 5★ Lodge",
+        "starRating": 5,
+        "style": [
+          "lake_access",
+          "spa",
+          "premium"
+        ],
+        "fromHKDPerNight": 2300
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Lake Transfers"
+      ],
+      "themes": [
+        "nature",
+        "premium",
+        "scenic"
+      ],
+      "highlights": [
+        "Lake Louise viewing window",
+        "Moraine Lake seasonal route",
+        "Banff town slow afternoon"
+      ],
+      "img": "https://picsum.photos/seed/banff-lake-louise-rockies/900/600",
+      "rating": 4.9,
+      "desc": "A premium 7-day Canadian Rockies plan designed around scenery, comfort, and limited daily friction.",
+      "priceHKD": 35680,
+      "destinations": [
+        "Banff",
+        "Lake Louise"
+      ],
+      "reviewCount": 176,
+      "priceBreakdownHKD": {
+        "flights": 16885,
+        "hotel": 13800,
+        "activitiesAndTransfers": 4995
+      }
+    },
+    {
+      "id": 29,
+      "title": "California Coast Drive (SF + Monterey)",
+      "shortName": "California Coast",
+      "tagline": "Golden coast roads, seaside towns, and easy city comfort.",
+      "region": "North America",
+      "country": "United States",
+      "city": "San Francisco",
+      "durationDays": 8,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Coastal 4★ Hotel Mix",
+        "starRating": 4,
+        "style": [
+          "coastal",
+          "comfortable",
+          "road_trip"
+        ],
+        "fromHKDPerNight": 1750
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Coast Drive Segment"
+      ],
+      "themes": [
+        "coastal",
+        "road_trip",
+        "scenic"
+      ],
+      "highlights": [
+        "Golden Gate viewpoint",
+        "Monterey and Carmel day",
+        "Pacific Coast Highway scenic segment"
+      ],
+      "img": "https://picsum.photos/seed/california-big-sur-coast/900/600",
+      "rating": 4.7,
+      "desc": "An 8-day California coast itinerary with scenic routing and practical hotel stops.",
+      "priceHKD": 26840,
+      "destinations": [
+        "San Francisco",
+        "Monterey"
+      ],
+      "reviewCount": 205,
+      "priceBreakdownHKD": {
+        "flights": 10832,
+        "hotel": 12250,
+        "activitiesAndTransfers": 3758
+      }
+    },
+    {
+      "id": 30,
+      "title": "Mexico City + Oaxaca Culture Route",
+      "shortName": "Mexico Oaxaca",
+      "tagline": "Food, color, museums, and a slower cultural rhythm.",
+      "region": "North America",
+      "country": "Mexico",
+      "city": "Mexico City",
+      "durationDays": 7,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Boutique 4★ City Stay",
+        "starRating": 4,
+        "style": [
+          "boutique",
+          "foodie",
+          "central"
+        ],
+        "fromHKDPerNight": 1050
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Museum Entry"
+      ],
+      "themes": [
+        "culture",
+        "foodie",
+        "city_break"
+      ],
+      "highlights": [
+        "Roma and Condesa food route",
+        "Museum and historic center day",
+        "Oaxaca market extension option"
+      ],
+      "img": "https://picsum.photos/seed/mexico-oaxaca-color-streets/900/600",
+      "rating": 4.6,
+      "desc": "A 7-day culture-forward Mexico plan with strong food value and comfortable hotel basics.",
+      "priceHKD": 16880,
+      "destinations": [
+        "Mexico City",
+        "Oaxaca"
+      ],
+      "reviewCount": 162,
+      "priceBreakdownHKD": {
+        "flights": 8217,
+        "hotel": 6300,
+        "activitiesAndTransfers": 2363
+      }
+    },
+    {
+      "id": 31,
+      "title": "Patagonia Glaciers + El Calafate Adventure",
+      "shortName": "Patagonia Glaciers",
+      "tagline": "Glaciers, big skies, and a once-in-a-while nature route.",
+      "region": "South America",
+      "country": "Argentina",
+      "city": "El Calafate",
+      "durationDays": 9,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "maxStops": 2,
+      "hotel": {
+        "name": "Patagonia 4★ Lodge",
+        "starRating": 4,
+        "style": [
+          "nature_lodge",
+          "scenic",
+          "quiet"
+        ],
+        "fromHKDPerNight": 1550
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Glacier Tour"
+      ],
+      "themes": [
+        "nature",
+        "adventure",
+        "scenic"
+      ],
+      "highlights": [
+        "Perito Moreno glacier day",
+        "Low-friction transfer plan",
+        "Lake-view rest afternoon"
+      ],
+      "img": "https://picsum.photos/seed/patagonia-glacier-mountains/900/600",
+      "rating": 4.8,
+      "desc": "A 9-day Patagonia itinerary for travelers who want dramatic landscapes without overpacking every day.",
+      "priceHKD": 29840,
+      "destinations": [
+        "El Calafate",
+        "Patagonia"
+      ],
+      "reviewCount": 139,
+      "priceBreakdownHKD": {
+        "flights": 13262,
+        "hotel": 12400,
+        "activitiesAndTransfers": 4178
+      }
+    },
+    {
+      "id": 32,
+      "title": "Peru Andes + Machu Picchu Comfort Route",
+      "shortName": "Peru Andes",
+      "tagline": "Sacred Valley scenery, Inca history, and careful pacing.",
+      "region": "South America",
+      "country": "Peru",
+      "city": "Cusco",
+      "durationDays": 8,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "maxStops": 2,
+      "hotel": {
+        "name": "Andes 4★ Heritage Hotel",
+        "starRating": 4,
+        "style": [
+          "heritage",
+          "scenic",
+          "central"
+        ],
+        "fromHKDPerNight": 1280
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Machu Picchu Entry"
+      ],
+      "themes": [
+        "culture",
+        "history",
+        "scenic"
+      ],
+      "highlights": [
+        "Sacred Valley acclimatization day",
+        "Machu Picchu guided visit",
+        "Cusco slow walking route"
+      ],
+      "img": "https://picsum.photos/seed/peru-andes-machu-picchu/900/600",
+      "rating": 4.8,
+      "desc": "An 8-day Peru route with altitude-aware pacing and major sights handled with clear logistics.",
+      "priceHKD": 24780,
+      "destinations": [
+        "Cusco",
+        "Machu Picchu"
+      ],
+      "reviewCount": 188,
+      "priceBreakdownHKD": {
+        "flights": 12351,
+        "hotel": 8960,
+        "activitiesAndTransfers": 3469
+      }
+    },
+    {
+      "id": 33,
+      "title": "Rio Coast + Sugarloaf City Break",
+      "shortName": "Rio Coast",
+      "tagline": "Beach views, iconic peaks, and lively coastal energy.",
+      "region": "South America",
+      "country": "Brazil",
+      "city": "Rio de Janeiro",
+      "durationDays": 7,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "maxStops": 2,
+      "hotel": {
+        "name": "Beachside 4★ Hotel",
+        "starRating": 4,
+        "style": [
+          "beachside",
+          "city_view",
+          "lively"
+        ],
+        "fromHKDPerNight": 1180
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "City Viewpoint Tour"
+      ],
+      "themes": [
+        "coastal",
+        "city_break",
+        "culture"
+      ],
+      "highlights": [
+        "Sugarloaf golden-hour window",
+        "Christ the Redeemer morning",
+        "Copacabana and Ipanema route"
+      ],
+      "img": "https://picsum.photos/seed/rio-sugarloaf-coast/900/600",
+      "rating": 4.6,
+      "desc": "A 7-day Rio plan balancing classic viewpoints, beach downtime, and safe route planning.",
+      "priceHKD": 21860,
+      "destinations": [
+        "Rio de Janeiro"
+      ],
+      "reviewCount": 156,
+      "priceBreakdownHKD": {
+        "flights": 11720,
+        "hotel": 7080,
+        "activitiesAndTransfers": 3060
+      }
+    },
+    {
+      "id": 34,
+      "title": "Chile Atacama Desert + Santiago Base",
+      "shortName": "Atacama Desert",
+      "tagline": "Salt flats, clear skies, and desert landscapes with comfort.",
+      "region": "South America",
+      "country": "Chile",
+      "city": "Santiago",
+      "durationDays": 8,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "maxStops": 2,
+      "hotel": {
+        "name": "Desert 4★ Lodge Combo",
+        "starRating": 4,
+        "style": [
+          "desert",
+          "stargazing",
+          "quiet"
+        ],
+        "fromHKDPerNight": 1450
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Desert Excursion"
+      ],
+      "themes": [
+        "desert",
+        "photography",
+        "scenic"
+      ],
+      "highlights": [
+        "Atacama valley sunset",
+        "Stargazing night window",
+        "Santiago buffer day"
+      ],
+      "img": "https://picsum.photos/seed/atacama-desert-chile/900/600",
+      "rating": 4.7,
+      "desc": "An 8-day Chile package for desert scenery, astronomy-friendly nights, and well-spaced transfers.",
+      "priceHKD": 27620,
+      "destinations": [
+        "Santiago",
+        "Atacama"
+      ],
+      "reviewCount": 128,
+      "priceBreakdownHKD": {
+        "flights": 13603,
+        "hotel": 10150,
+        "activitiesAndTransfers": 3867
+      }
+    },
+    {
+      "id": 35,
+      "title": "Buenos Aires + Mendoza Wine Escape",
+      "shortName": "Buenos Aires Wine",
+      "tagline": "Elegant streets, relaxed evenings, and wine-country calm.",
+      "region": "South America",
+      "country": "Argentina",
+      "city": "Buenos Aires",
+      "durationDays": 7,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "maxStops": 2,
+      "hotel": {
+        "name": "Design 4★ City Hotel",
+        "starRating": 4,
+        "style": [
+          "design",
+          "foodie",
+          "wine"
+        ],
+        "fromHKDPerNight": 1050
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Wine Day Tour"
+      ],
+      "themes": [
+        "culture",
+        "wine",
+        "city_break"
+      ],
+      "highlights": [
+        "Recoleta and Palermo route",
+        "Tango evening option",
+        "Mendoza wine-country extension"
+      ],
+      "img": "https://picsum.photos/seed/buenos-aires-mendoza-wine/900/600",
+      "rating": 4.5,
+      "desc": "A 7-day Argentina city-and-wine plan with good value and a gentler pace.",
+      "priceHKD": 19840,
+      "destinations": [
+        "Buenos Aires",
+        "Mendoza"
+      ],
+      "reviewCount": 142,
+      "priceBreakdownHKD": {
+        "flights": 10762,
+        "hotel": 6300,
+        "activitiesAndTransfers": 2778
+      }
+    },
+    {
+      "id": 36,
+      "title": "Sydney Harbour + Blue Mountains Comfort",
+      "shortName": "Sydney Harbour",
+      "tagline": "Harbour views, coastal walks, and a clean city base.",
+      "region": "Oceania",
+      "country": "Australia",
+      "city": "Sydney",
+      "durationDays": 6,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Harbour 4★ City Hotel",
+        "starRating": 4,
+        "style": [
+          "harbour",
+          "central",
+          "clean"
+        ],
+        "fromHKDPerNight": 1600
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Blue Mountains Day Tour"
+      ],
+      "themes": [
+        "city_and_coast",
+        "scenic",
+        "comfortable"
+      ],
+      "highlights": [
+        "Sydney Harbour walk",
+        "Bondi to Coogee coastal section",
+        "Blue Mountains day trip"
+      ],
+      "img": "https://picsum.photos/seed/sydney-harbour-blue-mountains/900/600",
+      "rating": 4.7,
+      "desc": "A 6-day Sydney itinerary with harbour icons, easy coastal time, and one scenic mountain day.",
+      "priceHKD": 18880,
+      "destinations": [
+        "Sydney",
+        "Blue Mountains"
+      ],
+      "reviewCount": 220,
+      "priceBreakdownHKD": {
+        "flights": 8237,
+        "hotel": 8000,
+        "activitiesAndTransfers": 2643
+      }
+    },
+    {
+      "id": 37,
+      "title": "New Zealand South Island Scenic Loop",
+      "shortName": "South Island Loop",
+      "tagline": "Lakes, peaks, and cinematic road scenery.",
+      "region": "Oceania",
+      "country": "New Zealand",
+      "city": "Queenstown",
+      "durationDays": 8,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Lakeview 4★ Lodge Mix",
+        "starRating": 4,
+        "style": [
+          "lake_view",
+          "road_trip",
+          "scenic"
+        ],
+        "fromHKDPerNight": 1800
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Scenic Transfer"
+      ],
+      "themes": [
+        "nature",
+        "road_trip",
+        "scenic"
+      ],
+      "highlights": [
+        "Queenstown lakefront base",
+        "Milford Sound day option",
+        "Wanaka scenic stop"
+      ],
+      "img": "https://picsum.photos/seed/queenstown-south-island-lake/900/600",
+      "rating": 4.9,
+      "desc": "An 8-day South Island plan focused on big scenery and comfortable overnight stops.",
+      "priceHKD": 27460,
+      "destinations": [
+        "Queenstown",
+        "Wanaka"
+      ],
+      "reviewCount": 196,
+      "priceBreakdownHKD": {
+        "flights": 11016,
+        "hotel": 12600,
+        "activitiesAndTransfers": 3844
+      }
+    },
+    {
+      "id": 38,
+      "title": "Melbourne + Great Ocean Road Value Week",
+      "shortName": "Melbourne Coast",
+      "tagline": "Coffee lanes, galleries, and dramatic coast roads.",
+      "region": "Oceania",
+      "country": "Australia",
+      "city": "Melbourne",
+      "durationDays": 6,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Central 4★ Laneway Hotel",
+        "starRating": 4,
+        "style": [
+          "central",
+          "foodie",
+          "value"
+        ],
+        "fromHKDPerNight": 1320
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Great Ocean Road Tour"
+      ],
+      "themes": [
+        "city_break",
+        "coastal",
+        "foodie"
+      ],
+      "highlights": [
+        "Melbourne laneway route",
+        "Great Ocean Road day tour",
+        "Gallery and market time"
+      ],
+      "img": "https://picsum.photos/seed/melbourne-great-ocean-road/900/600",
+      "rating": 4.6,
+      "desc": "A good-value Melbourne package with coastal scenery and a comfortable city base.",
+      "priceHKD": 16240,
+      "destinations": [
+        "Melbourne",
+        "Great Ocean Road"
+      ],
+      "reviewCount": 174,
+      "priceBreakdownHKD": {
+        "flights": 7366,
+        "hotel": 6600,
+        "activitiesAndTransfers": 2274
+      }
+    },
+    {
+      "id": 39,
+      "title": "Fiji Island Reset",
+      "shortName": "Fiji Island",
+      "tagline": "Warm water, simple transfers, and quiet resort downtime.",
+      "region": "Oceania",
+      "country": "Fiji",
+      "city": "Nadi",
+      "durationDays": 6,
+      "departureAirport": "HKG",
+      "cabinClass": "Economy",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Beachfront 4★ Resort",
+        "starRating": 4,
+        "style": [
+          "beachfront",
+          "relaxed",
+          "resort"
+        ],
+        "fromHKDPerNight": 1450
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Airport Transfer"
+      ],
+      "themes": [
+        "beach",
+        "relaxed",
+        "resort"
+      ],
+      "highlights": [
+        "Beachfront downtime",
+        "Island-hopping optional day",
+        "Low-friction resort transfer"
+      ],
+      "img": "https://picsum.photos/seed/fiji-island-turquoise-water/900/600",
+      "rating": 4.7,
+      "desc": "A 6-day Fiji reset for travelers who want warm weather and simple logistics.",
+      "priceHKD": 17860,
+      "destinations": [
+        "Nadi",
+        "Fiji Islands"
+      ],
+      "reviewCount": 151,
+      "priceBreakdownHKD": {
+        "flights": 8110,
+        "hotel": 7250,
+        "activitiesAndTransfers": 2500
+      }
+    },
+    {
+      "id": 40,
+      "title": "Tasmania Nature + Hobart Slow Week",
+      "shortName": "Tasmania Nature",
+      "tagline": "Wild coast, quiet towns, and crisp island landscapes.",
+      "region": "Oceania",
+      "country": "Australia",
+      "city": "Hobart",
+      "durationDays": 7,
+      "departureAirport": "HKG",
+      "cabinClass": "Premium Economy",
+      "maxStops": 1,
+      "hotel": {
+        "name": "Hobart 4★ Waterfront Hotel",
+        "starRating": 4,
+        "style": [
+          "waterfront",
+          "quiet",
+          "nature"
+        ],
+        "fromHKDPerNight": 1500
+      },
+      "includes": [
+        "Flights",
+        "Hotel",
+        "Breakfast",
+        "Nature Day Tour"
+      ],
+      "themes": [
+        "nature",
+        "quiet",
+        "scenic"
+      ],
+      "highlights": [
+        "Hobart waterfront base",
+        "Bruny Island or coastal day",
+        "Slow market morning"
+      ],
+      "img": "https://picsum.photos/seed/tasmania-hobart-nature-coast/900/600",
+      "rating": 4.6,
+      "desc": "A 7-day Tasmania plan with a quiet pace, waterfront comfort, and accessible nature days.",
+      "priceHKD": 22480,
+      "destinations": [
+        "Hobart",
+        "Tasmania"
+      ],
+      "reviewCount": 129,
+      "priceBreakdownHKD": {
+        "flights": 10333,
+        "hotel": 9000,
+        "activitiesAndTransfers": 3147
+      }
+    }
+  ]
+}
